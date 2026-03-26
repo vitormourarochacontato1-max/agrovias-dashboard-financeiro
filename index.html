@@ -116,7 +116,7 @@
     <div class="auth-err" id="auth-err">Senha incorreta</div>
   </div>
 </div>
- 
+
 <div id="app">
   <div class="topbar">
     <span class="logo">Agro<span>vias</span></span>
@@ -127,7 +127,7 @@
       <button class="btn" onclick="exportCSV()">↓ Exportar CSV</button>
     </div>
   </div>
- 
+
   <div class="tabs">
     <div class="tab on" onclick="sw('resultado',this)">📊 Resultado Mensal</div>
     <div class="tab" onclick="sw('centrocusto',this)">🏗️ Centro de Custo</div>
@@ -136,9 +136,9 @@
     <div class="tab" onclick="sw('custos',this)">📂 Custos por Categoria</div>
     <div class="tab" onclick="sw('risco',this)">🛡️ Análise de Risco</div>
   </div>
- 
+
   <div class="main">
- 
+
     <!-- ABA 1: RESULTADO -->
     <div class="panel on" id="panel-resultado">
       <div class="kpi-row r4">
@@ -163,7 +163,7 @@
           <div class="kd warn">12 notas em aberto</div>
         </div>
       </div>
- 
+
       <div class="g2">
         <div class="card">
           <div class="ct">Receita vs Resultado por CC (Jan+Fev)</div>
@@ -174,7 +174,7 @@
           <canvas id="c-fat" height="210"></canvas>
         </div>
       </div>
- 
+
       <div class="card">
         <div class="ct">Resultado por Centro de Custo — Fechamento Real</div>
         <table>
@@ -234,7 +234,7 @@
         </table>
       </div>
     </div>
- 
+
     <!-- ABA 2: CENTRO DE CUSTO -->
     <div class="panel" id="panel-centrocusto">
       <div class="kpi-row r4">
@@ -285,7 +285,7 @@
         </div>
       </div>
     </div>
- 
+
     <!-- ABA 3: CLIENTES -->
     <div class="panel" id="panel-clientes">
       <div class="kpi-row r4">
@@ -320,7 +320,7 @@
         </table>
       </div>
     </div>
- 
+
     <!-- ABA 4: INADIMPLÊNCIA -->
     <div class="panel" id="panel-inadimplencia">
       <div class="kpi-row r4">
@@ -358,7 +358,7 @@
         </div>
       </div>
     </div>
- 
+
     <!-- ABA 5: CUSTOS POR CATEGORIA -->
     <div class="panel" id="panel-custos">
       <div class="kpi-row r4">
@@ -383,7 +383,7 @@
           <div class="kd neu">Jan R$20k · Fev R$18k</div>
         </div>
       </div>
- 
+
       <div class="g2">
         <div class="card">
           <div class="ct">Custos Identificados por Categoria</div>
@@ -394,7 +394,7 @@
           <canvas id="c-cat-bar" height="220"></canvas>
         </div>
       </div>
- 
+
       <div class="g2">
         <div class="card">
           <div class="ct">Estratificação Detalhada — Jan+Fev</div>
@@ -417,7 +417,7 @@
             <div class="cbr"><span class="cbl">Transporte</span><div class="cbt"><div class="cbf" style="width:16%;background:#bc8cff"></div></div><span class="cbv">R$ 26k</span><span class="cbp">—</span></div>
           </div>
         </div>
- 
+
         <div class="card">
           <div class="ct">Resumo Categórico</div>
           <table>
@@ -439,7 +439,7 @@
         </div>
       </div>
     </div>
- 
+
     <!-- ABA 6: ANÁLISE DE RISCO -->
     <div class="panel" id="panel-risco">
       <div class="kpi-row r5">
@@ -469,7 +469,7 @@
           <div class="ks">-15% margem · -R$12k</div>
         </div>
       </div>
- 
+
       <div class="g2">
         <div class="card">
           <div class="ct">🎯 Concentração de Receita — Risco <span class="badge bg-r">CRÍTICO</span></div>
@@ -487,7 +487,7 @@
             </div>
           </div>
         </div>
- 
+
         <div class="card">
           <div class="ct">🏗️ CCs com Margem Negativa — Risco <span class="badge bg-y">MÉDIO</span></div>
           <canvas id="c-risco-cc" height="180"></canvas>
@@ -505,7 +505,7 @@
           </div>
         </div>
       </div>
- 
+
       <div class="g2">
         <div class="card">
           <div class="ct">💰 Capital Travado em Inadimplência — Risco <span class="badge bg-y">MÉDIO</span></div>
@@ -523,7 +523,7 @@
             </div>
           </div>
         </div>
- 
+
         <div class="card">
           <div class="ct">📋 Matriz de Riscos — Ações Prioritárias</div>
           <table>
@@ -570,19 +570,19 @@
         </div>
       </div>
     </div>
- 
+
   </div><!-- /main -->
 </div><!-- /app -->
- 
+
 <script>
 // AUTH
 const PWD_HASH = 'fe2592b42a727e977f055947385b709cc82b16b9a87f88c6abf3900d65d0cdc3'; // 4321
 async function sha256(msg){const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(msg));return[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('')}
 async function login(){const h=await sha256(document.getElementById('pwd').value);if(h===PWD_HASH){document.getElementById('auth').style.display='none';document.getElementById('app').style.display='block';initCharts()}else{document.getElementById('auth-err').style.display='block'}}
- 
+
 // TABS
 function sw(name,el){document.querySelectorAll('.panel').forEach(p=>p.classList.remove('on'));document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));document.getElementById('panel-'+name).classList.add('on');el.classList.add('on')}
- 
+
 // EXPORT
 function exportCSV(){
   const rows=[['Centro de Custo','Receita Jan','Resultado Jan','Receita Fev','Resultado Fev','Total Rec','Total Res','Margem'],
@@ -594,60 +594,60 @@ function exportCSV(){
   const csv=rows.map(r=>r.join(',')).join('\n');
   const a=document.createElement('a');a.href='data:text/csv;charset=utf-8,'+encodeURIComponent(csv);a.download='agrovias_2026_real.csv';a.click();
 }
- 
+
 // CHART CONFIG
 const DK={text:'#8b949e',border:'#30363d',grid:'#1c2128'};
 Chart.defaults.color=DK.text;Chart.defaults.borderColor=DK.border;
 const TT={backgroundColor:'#161b22',borderColor:'#30363d',borderWidth:1,titleColor:'#e6edf3',bodyColor:'#8b949e',titleFont:{family:'DM Sans',weight:'600'},bodyFont:{family:'JetBrains Mono',size:12},padding:10};
 const fmt=v=>'R$'+(v>=1000000?(v/1000000).toFixed(2)+'M':v>=1000?(v/1000).toFixed(0)+'k':v.toFixed(0));
 function ax(cb){return{x:{grid:{color:DK.grid},ticks:{color:DK.text,font:{size:11}}},y:{grid:{color:DK.grid},ticks:{color:DK.text,font:{family:'JetBrains Mono',size:11},callback:cb||((v)=>fmt(v))}}}}
- 
+
 function initCharts(){
   // ABA 1 — Receita vs Resultado por CC
   new Chart('c-recres',{type:'bar',data:{labels:['Equipe Obras','Cajamar','Castelo 46','Cotia 39'],datasets:[
     {label:'Receita',data:[1712472,353830,114686,82985],backgroundColor:'#1f4d28',borderColor:'#3fb950',borderWidth:1},
     {label:'Resultado',data:[800706,13024,10266,-12482],backgroundColor:'#1a3a5c',borderColor:'#58a6ff',borderWidth:1}
   ]},options:{responsive:true,plugins:{legend:{labels:{color:DK.text,usePointStyle:true,font:{family:'DM Sans',size:12}}},tooltip:{...TT,callbacks:{label:c=>' '+fmt(c.parsed.y)}}},scales:ax()}});
- 
+
   // Faturamento mensal
   new Chart('c-fat',{type:'bar',data:{labels:['Janeiro','Fevereiro','Março'],datasets:[{data:[1508174,782598,577293],backgroundColor:['#2ea043','#388bfd','#9e6a03'],borderRadius:6,borderSkipped:false}]},options:{responsive:true,plugins:{legend:{display:false},tooltip:{...TT,callbacks:{label:c=>' '+fmt(c.parsed.y)}}},scales:ax()}});
- 
+
   // ABA 2 — CC pie
   new Chart('c-cc-pie',{type:'doughnut',data:{labels:['Equipe Obras 75,6%','Cajamar 15,6%','Castelo 46 5,1%','Cotia 39 3,7%'],datasets:[{data:[1712472,353830,114686,82985],backgroundColor:['#2ea043','#1f6feb','#9e6a03','#da3633'],borderWidth:0}]},options:{responsive:true,cutout:'60%',plugins:{legend:{position:'bottom',labels:{color:DK.text,font:{family:'DM Sans',size:12},padding:10,usePointStyle:true,pointStyle:'circle'}},tooltip:{...TT,callbacks:{label:c=>' '+fmt(c.parsed)}}}}});
- 
+
   // CC bar Jan vs Fev
   new Chart('c-cc-bar',{type:'bar',data:{labels:['Equipe Obras','Cajamar','Castelo 46','Cotia 39'],datasets:[
     {label:'Jan',data:[693094,-12418,-7641,-28038],backgroundColor:'#1f6feb'},
     {label:'Fev',data:[107612,25442,17907,15556],backgroundColor:'#2ea043'},
   ]},options:{responsive:true,plugins:{legend:{labels:{color:DK.text,usePointStyle:true,font:{family:'DM Sans',size:12}}},tooltip:{...TT,callbacks:{label:c=>' '+fmt(c.parsed.y)}}},scales:{x:{grid:{color:DK.grid},ticks:{color:DK.text,font:{size:11}}},y:{grid:{color:DK.grid},ticks:{color:DK.text,font:{family:'JetBrains Mono',size:11},callback:v=>fmt(v)}}}}});
- 
+
   // ABA 3 — Clientes
   new Chart('c-cli',{type:'bar',data:{labels:['Racional Eng.','Prologis Brazil','Mercado Livre','Monin Brasil','Microsoft','Assoc. Anhang.','Acciona'],datasets:[{data:[1220817,548124,96066,89819,71045,46541,44522],backgroundColor:['#da3633','#e08e45','#1f6feb','#2ea043','#9e6a03','#388bfd','#bc8cff'],borderRadius:4,borderSkipped:false}]},options:{responsive:true,indexAxis:'y',plugins:{legend:{display:false},tooltip:{...TT,callbacks:{label:c=>' '+fmt(c.parsed.x)}}},scales:{x:{grid:{color:DK.grid},ticks:{color:DK.text,font:{family:'JetBrains Mono',size:11},callback:v=>fmt(v)}},y:{grid:{color:DK.grid},ticks:{color:DK.text,font:{size:12}}}}}});
- 
+
   new Chart('c-conc',{type:'doughnut',data:{labels:['Racional (57,7%)','Prologis (25,9%)','Outros 5 (16,4%)'],datasets:[{data:[57.7,25.9,16.4],backgroundColor:['#da3633','#e08e45','#1f6feb'],borderWidth:0}]},options:{responsive:true,cutout:'60%',plugins:{legend:{position:'bottom',labels:{color:DK.text,font:{family:'DM Sans',size:12},padding:10,usePointStyle:true,pointStyle:'circle'}}}}});
- 
+
   // ABA 4 — NFs
   new Chart('c-nf',{type:'bar',data:{labels:['Acciona\n(NF31)','FDR Ind.\n(NF211)','Prologis\nJundiaí','FWI Empr.','Res.Monte\nSerrat','3PL Brasil','MTSNI'],datasets:[{data:[45129,12500,10850,8800,10200,1050,1400],backgroundColor:['#da3633','#f85149','#e08e45','#d29922','#bb8009','#9e6a03','#7a4f00'],borderRadius:4,borderSkipped:false}]},options:{responsive:true,plugins:{legend:{display:false},tooltip:{...TT,callbacks:{label:c=>' '+fmt(c.parsed.y)}}},scales:ax()}});
- 
+
   new Chart('c-aging',{type:'doughnut',data:{labels:['+365 dias','181–365 dias','31–180 dias','1–30 dias'],datasets:[{data:[22700,1400,54929,10850],backgroundColor:['#da3633','#e08e45','#d29922','#2ea043'],borderWidth:0}]},options:{responsive:true,cutout:'60%',plugins:{legend:{position:'bottom',labels:{color:DK.text,font:{family:'DM Sans',size:12},padding:10,usePointStyle:true,pointStyle:'circle'}},tooltip:{...TT,callbacks:{label:c=>' '+fmt(c.parsed)}}}}});
- 
+
   // ABA 5 — Custos categorias
   new Chart('c-cat-pie',{type:'doughnut',data:{labels:['Insumos/Materiais','Folha+Encargos','Equipamentos','Indireto/Banco','Combustível','Transporte','Aluguel'],datasets:[{data:[2482358,725915,72035,73791,38317,25466,16137],backgroundColor:['#1f6feb','#2ea043','#d29922','#9e6a03','#da3633','#bc8cff','#388bfd'],borderWidth:0}]},options:{responsive:true,cutout:'55%',plugins:{legend:{position:'right',labels:{color:DK.text,font:{family:'DM Sans',size:11},padding:8,usePointStyle:true,pointStyle:'circle'}},tooltip:{...TT,callbacks:{label:c=>' '+fmt(c.parsed)}}}}});
- 
+
   new Chart('c-cat-bar',{type:'bar',data:{labels:['Insumos','Folha','Equip.','Indireto','Comb.','Transp.','Aluguel'],datasets:[
     {label:'Janeiro',data:[487017,370531,36170,38926,20201,3663,5763],backgroundColor:'#1f6feb'},
     {label:'Fevereiro',data:[1995341,355384,36865,35865,18116,22803,10374],backgroundColor:'#2ea043'},
   ]},options:{responsive:true,plugins:{legend:{labels:{color:DK.text,usePointStyle:true,font:{family:'DM Sans',size:12}}},tooltip:{...TT,callbacks:{label:c=>' '+fmt(c.parsed.y)}}},scales:{x:{grid:{color:DK.grid},ticks:{color:DK.text,font:{size:10}}},y:{grid:{color:DK.grid},ticks:{color:DK.text,font:{family:'JetBrains Mono',size:11},callback:v=>fmt(v)}}}}});
- 
+
   // ABA 6 — Risco concentração
   new Chart('c-risco-conc',{type:'doughnut',data:{labels:['Racional Eng. (57,7%)','Prologis (25,9%)','Demais 5 clientes (16,4%)'],datasets:[{data:[57.7,25.9,16.4],backgroundColor:['#da3633','#e08e45','#1f6feb'],borderWidth:0}]},options:{responsive:true,cutout:'65%',plugins:{legend:{position:'bottom',labels:{color:DK.text,font:{family:'DM Sans',size:12},padding:10,usePointStyle:true,pointStyle:'circle'}}}}});
- 
+
   // Risco CC margem
   new Chart('c-risco-cc',{type:'bar',data:{labels:['Equipe Obras','Cajamar','Castelo 46','Cotia 39'],datasets:[
     {label:'Margem %',data:[46.8,3.7,9.0,-15.0],backgroundColor:['#2ea043','#d29922','#d29922','#da3633'],borderRadius:4,borderSkipped:false},
     {label:'Meta 20%',data:[20,20,20,20],type:'line',borderColor:'#58a6ff66',borderDash:[4,4],pointRadius:0,borderWidth:1},
   ]},options:{responsive:true,plugins:{legend:{labels:{color:DK.text,usePointStyle:true,font:{family:'DM Sans',size:12}}},tooltip:{...TT,callbacks:{label:c=>' '+c.parsed.y+'%'}}},scales:{x:{grid:{color:DK.grid},ticks:{color:DK.text,font:{size:11}}},y:{grid:{color:DK.grid},ticks:{color:DK.text,font:{family:'JetBrains Mono',size:11},callback:v=>v+'%'}}}}});
- 
+
   // Risco NF aging
   new Chart('c-risco-nf',{type:'bar',data:{labels:['+365d','181-365d','31-180d','1-30d'],datasets:[{data:[22700,1400,54929,10850],backgroundColor:['#da3633','#e08e45','#d29922','#3fb950'],borderRadius:4,borderSkipped:false}]},options:{responsive:true,plugins:{legend:{display:false},tooltip:{...TT,callbacks:{label:c=>' '+fmt(c.parsed.y)}}},scales:ax()}});
 }
