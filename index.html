@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<h1>TESTE NOVO</h1>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Agrovias — Dashboard Financeiro</title>
+<title>Agrovias — Dashboard Financeiro 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
@@ -15,79 +14,63 @@
     --text:#e6edf3;--text2:#8b949e;--text3:#656d76;
     --green:#3fb950;--green-dim:#1a4d1e;--green-bg:#0d2118;
     --red:#f85149;--red-dim:#4d1a1a;--red-bg:#210d0d;
-    --yellow:#d29922;--yellow-dim:#4d3a0a;--yellow-bg:#1f1700;
-    --blue:#58a6ff;--blue-dim:#1a3a5c;--blue-bg:#0d1f36;
+    --yellow:#d29922;--yellow-bg:#1f1700;
+    --blue:#58a6ff;--blue-bg:#0d1f36;
     --purple:#bc8cff;--orange:#ff8c42;
     --radius:8px;--radius-sm:5px;
     font-family:'DM Sans',sans-serif;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   body{background:var(--bg);color:var(--text);min-height:100vh;font-size:14px}
-  
-  /* AUTH */
-  #auth{display:flex;align-items:center;justify-content:center;min-height:100vh;background:var(--bg)}
+  #auth{display:flex;align-items:center;justify-content:center;min-height:100vh}
   .auth-box{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:40px;width:340px;text-align:center}
   .auth-logo{font-size:28px;font-weight:700;letter-spacing:-1px;margin-bottom:4px}
   .auth-logo span{color:var(--green)}
   .auth-sub{color:var(--text2);font-size:13px;margin-bottom:28px}
   .auth-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:10px 14px;color:var(--text);font-size:14px;outline:none;transition:.2s}
   .auth-input:focus{border-color:var(--green)}
-  .auth-btn{margin-top:12px;width:100%;background:var(--green);border:none;border-radius:var(--radius);padding:11px;color:#000;font-weight:600;font-size:14px;cursor:pointer;transition:.2s}
-  .auth-btn:hover{opacity:.85}
+  .auth-btn{margin-top:12px;width:100%;background:var(--green);border:none;border-radius:var(--radius);padding:11px;color:#000;font-weight:600;font-size:14px;cursor:pointer}
   .auth-err{color:var(--red);font-size:12px;margin-top:8px;display:none}
-
-  /* LAYOUT */
   #app{display:none}
   .topbar{background:var(--bg2);border-bottom:1px solid var(--border);padding:0 24px;display:flex;align-items:center;gap:16px;height:52px}
-  .logo{font-size:17px;font-weight:700;letter-spacing:-.5px;margin-right:8px}
+  .logo{font-size:17px;font-weight:700;letter-spacing:-.5px}
   .logo span{color:var(--green)}
   .obra-tag{background:var(--bg4);border:1px solid var(--border);border-radius:20px;padding:3px 12px;font-size:12px;color:var(--text2)}
-  .topbar-right{margin-left:auto;display:flex;align-items:center;gap:12px}
-  .edit-btn{background:var(--bg4);border:1px solid var(--border);border-radius:var(--radius-sm);padding:5px 12px;font-size:12px;color:var(--text2);cursor:pointer;transition:.2s}
-  .edit-btn:hover,.edit-btn.on{background:var(--yellow-dim);border-color:var(--yellow);color:var(--yellow)}
+  .badge-real{background:#0d2118;border:1px solid #3fb950;border-radius:20px;padding:3px 10px;font-size:11px;color:var(--green);font-weight:600}
+  .topbar-right{margin-left:auto;display:flex;align-items:center;gap:10px}
+  .btn{background:var(--bg4);border:1px solid var(--border);border-radius:var(--radius-sm);padding:5px 12px;font-size:12px;color:var(--text2);cursor:pointer}
+  .btn:hover{border-color:var(--blue);color:var(--blue)}
   .status-dot{width:7px;height:7px;background:var(--green);border-radius:50%;display:inline-block;margin-right:5px;animation:pulse 2s infinite}
   @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-  
-  /* TABS */
-  .tabs{background:var(--bg2);border-bottom:1px solid var(--border);padding:0 24px;display:flex;gap:0;overflow-x:auto}
+  .tabs{background:var(--bg2);border-bottom:1px solid var(--border);padding:0 24px;display:flex;overflow-x:auto}
   .tab{padding:12px 18px;font-size:13px;font-weight:500;color:var(--text2);cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;transition:.2s}
   .tab:hover{color:var(--text)}
   .tab.on{color:var(--text);border-bottom-color:var(--green)}
-  
-  /* MAIN */
   .main{padding:20px 24px;max-width:1440px}
   .panel{display:none}.panel.on{display:block}
-  
-  /* GRID */
   .kpi-row{display:grid;gap:12px;margin-bottom:20px}
-  .kpi-row-4{grid-template-columns:repeat(4,1fr)}
-  .kpi-row-3{grid-template-columns:repeat(3,1fr)}
-  .kpi-row-5{grid-template-columns:repeat(5,1fr)}
-  .chart-grid{display:grid;gap:16px;margin-bottom:20px}
-  .chart-2{grid-template-columns:repeat(2,1fr)}
-  .chart-3{grid-template-columns:2fr 1fr}
-  .chart-32{grid-template-columns:3fr 2fr}
-  
-  /* CARDS */
+  .r4{grid-template-columns:repeat(4,1fr)}
+  .r3{grid-template-columns:repeat(3,1fr)}
+  .r5{grid-template-columns:repeat(5,1fr)}
+  .g2{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:20px}
+  .g32{display:grid;grid-template-columns:3fr 2fr;gap:16px;margin-bottom:20px}
+  .g3{display:grid;grid-template-columns:2fr 1fr;gap:16px;margin-bottom:20px}
   .card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:16px}
-  .card-sm{padding:12px 14px}
-  .kpi-label{font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
-  .kpi-val{font-size:22px;font-weight:700;font-family:'JetBrains Mono',monospace;letter-spacing:-1px}
-  .kpi-sub{font-size:12px;color:var(--text3);margin-top:3px}
-  .kpi-delta{display:inline-flex;align-items:center;gap:3px;font-size:11px;font-family:'JetBrains Mono';font-weight:500;padding:2px 7px;border-radius:20px;margin-top:6px}
-  .d-up{background:var(--green-bg);color:var(--green)}
-  .d-dn{background:var(--red-bg);color:var(--red)}
-  .d-neu{background:var(--bg4);color:var(--text2)}
-  .d-warn{background:var(--yellow-bg);color:var(--yellow)}
-  
-  .card-title{font-size:13px;font-weight:600;margin-bottom:14px;display:flex;align-items:center;gap:8px}
-  .card-title .badge{font-size:10px;padding:2px 8px;border-radius:20px;font-weight:500}
-  .bg-green{background:var(--green-bg);color:var(--green)}
-  .bg-red{background:var(--red-bg);color:var(--red)}
-  .bg-yellow{background:var(--yellow-bg);color:var(--yellow)}
-  .bg-blue{background:var(--blue-bg);color:var(--blue)}
-  
-  /* TABLE */
+  .csm{padding:12px 14px}
+  .kl{font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
+  .kv{font-size:22px;font-weight:700;font-family:'JetBrains Mono',monospace;letter-spacing:-1px}
+  .ks{font-size:12px;color:var(--text3);margin-top:3px}
+  .kd{display:inline-flex;align-items:center;gap:3px;font-size:11px;font-family:'JetBrains Mono';font-weight:500;padding:2px 7px;border-radius:20px;margin-top:6px}
+  .up{background:var(--green-bg);color:var(--green)}
+  .dn{background:var(--red-bg);color:var(--red)}
+  .neu{background:var(--bg4);color:var(--text2)}
+  .warn{background:var(--yellow-bg);color:var(--yellow)}
+  .ct{font-size:13px;font-weight:600;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+  .badge{font-size:10px;padding:2px 8px;border-radius:20px;font-weight:500}
+  .bg-g{background:var(--green-bg);color:var(--green)}
+  .bg-r{background:var(--red-bg);color:var(--red)}
+  .bg-y{background:var(--yellow-bg);color:var(--yellow)}
+  .bg-b{background:var(--blue-bg);color:var(--blue)}
   table{width:100%;border-collapse:collapse;font-size:13px}
   th{text-align:left;font-size:11px;font-weight:500;color:var(--text3);text-transform:uppercase;letter-spacing:.4px;padding:7px 10px;border-bottom:1px solid var(--border2)}
   td{padding:9px 10px;border-bottom:1px solid var(--border2);color:var(--text)}
@@ -99,758 +82,574 @@
   .p-ng{background:var(--red-bg);color:var(--red)}
   .p-at{background:var(--yellow-bg);color:var(--yellow)}
   .p-az{background:var(--blue-bg);color:var(--blue)}
-  .p-pu{background:#2a1a45;color:var(--purple)}
-
-  /* PROGRESS BAR */
-  .bar-wrap{display:inline-block;width:80px;height:5px;background:var(--bg4);border-radius:3px;margin-left:8px;vertical-align:middle}
-  .bar-fill{display:block;height:100%;border-radius:3px}
-
-  /* RISK METER */
-  .risk-meter{position:relative;height:12px;background:linear-gradient(90deg,var(--green) 0%,var(--yellow) 50%,var(--red) 100%);border-radius:6px;margin:8px 0}
-  .risk-needle{position:absolute;top:-4px;width:20px;height:20px;background:var(--text);border-radius:50%;transform:translateX(-50%);border:3px solid var(--bg2);transition:.5s}
-  
-  /* EDITABLE */
-  .editable{border-radius:3px;transition:.15s}
-  .edit-mode .editable{background:var(--bg4);outline:1px dashed var(--border);padding:1px 4px;cursor:text}
-  .edit-mode .editable:focus{outline:1px solid var(--yellow);background:var(--bg3)}
-
-  /* COST BREAKDOWN */
-  .cost-bar-row{display:flex;align-items:center;gap:10px;margin-bottom:10px}
-  .cost-bar-label{width:110px;font-size:12px;color:var(--text2);flex-shrink:0}
-  .cost-bar-track{flex:1;height:8px;background:var(--bg4);border-radius:4px;overflow:hidden}
-  .cost-bar-fill{height:100%;border-radius:4px;transition:.6s}
-  .cost-bar-val{width:70px;text-align:right;font-family:'JetBrains Mono';font-size:12px;color:var(--text)}
-  .cost-bar-pct{width:38px;text-align:right;font-family:'JetBrains Mono';font-size:11px;color:var(--text3)}
-
-  /* RISK CARD */
-  .risk-block{border-left:3px solid;padding:12px 14px;border-radius:0 var(--radius) var(--radius) 0;margin-bottom:10px;background:var(--bg3)}
-  .risk-block.low{border-color:var(--green)}
-  .risk-block.med{border-color:var(--yellow)}
-  .risk-block.high{border-color:var(--red)}
-  .risk-title{font-size:13px;font-weight:600;margin-bottom:4px}
-  .risk-desc{font-size:12px;color:var(--text2);line-height:1.5}
-  .risk-val{font-family:'JetBrains Mono';font-size:14px;font-weight:600;float:right;margin-top:-2px}
-
-  /* SEPARATOR */
-  .sep{height:1px;background:var(--border2);margin:16px 0}
-  .section-title{font-size:12px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px}
-
-  /* SCROLLBAR */
+  .bw{display:block;height:5px;background:var(--bg4);border-radius:3px;overflow:hidden;display:inline-block;width:70px;margin-left:6px;vertical-align:middle}
+  .bf{display:block;height:100%;border-radius:3px}
+  .cbr{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+  .cbl{width:120px;font-size:12px;color:var(--text2);flex-shrink:0}
+  .cbt{flex:1;height:8px;background:var(--bg4);border-radius:4px;overflow:hidden}
+  .cbf{height:100%;border-radius:4px}
+  .cbv{width:80px;text-align:right;font-family:'JetBrains Mono';font-size:12px}
+  .cbp{width:40px;text-align:right;font-family:'JetBrains Mono';font-size:11px;color:var(--text3)}
+  .rb{border-left:3px solid;padding:12px 14px;border-radius:0 var(--radius) var(--radius) 0;margin-bottom:10px;background:var(--bg3)}
+  .rb.low{border-color:var(--green)}.rb.med{border-color:var(--yellow)}.rb.high{border-color:var(--red)}
+  .rt{font-size:13px;font-weight:600;margin-bottom:4px}
+  .rd{font-size:12px;color:var(--text2);line-height:1.5}
+  .rv{font-family:'JetBrains Mono';font-size:14px;font-weight:600;float:right;margin-top:-2px}
+  .sep{height:1px;background:var(--border2);margin:14px 0}
+  .stitle{font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px;margin-top:4px}
+  .rm{position:relative;height:12px;background:linear-gradient(90deg,var(--green) 0%,var(--yellow) 50%,var(--red) 100%);border-radius:6px;margin:8px 0}
+  .rn{position:absolute;top:-4px;width:20px;height:20px;background:var(--text);border-radius:50%;transform:translateX(-50%);border:3px solid var(--bg2)}
   ::-webkit-scrollbar{width:5px;height:5px}
   ::-webkit-scrollbar-track{background:var(--bg)}
   ::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
-
   canvas{max-width:100%}
-  
-  @media(max-width:768px){
-    .kpi-row-4,.kpi-row-5{grid-template-columns:repeat(2,1fr)}
-    .chart-2,.chart-3,.chart-32{grid-template-columns:1fr}
-    .main{padding:14px}
-  }
+  @media(max-width:768px){.r4,.r5{grid-template-columns:repeat(2,1fr)}.g2,.g3,.g32{grid-template-columns:1fr}.main{padding:14px}}
 </style>
 </head>
 <body>
-
-<!-- AUTH -->
 <div id="auth">
   <div class="auth-box">
     <div class="auth-logo">Agro<span>vias</span></div>
-    <div class="auth-sub">Dashboard Financeiro — Obra Dante</div>
+    <div class="auth-sub">Dashboard Financeiro 2026</div>
     <input class="auth-input" type="password" id="pwd" placeholder="Senha de acesso" onkeydown="if(event.key==='Enter')login()">
     <button class="auth-btn" onclick="login()">Entrar</button>
     <div class="auth-err" id="auth-err">Senha incorreta</div>
   </div>
 </div>
-
-<!-- APP -->
+ 
 <div id="app">
   <div class="topbar">
     <span class="logo">Agro<span>vias</span></span>
-    <span class="obra-tag">Obra Dante · AVP-291</span>
-    <span style="font-size:12px;color:var(--text3)"><span class="status-dot"></span>Atualizado Mar/2026</span>
+    <span class="obra-tag">Fluxo Financeiro 2026</span>
+    <span class="badge-real">✓ Dados Reais</span>
+    <span style="font-size:12px;color:var(--text3)"><span class="status-dot"></span>Jan–Mar/2026</span>
     <div class="topbar-right">
-      <button class="edit-btn" id="edit-btn" onclick="toggleEdit()">✏️ Editar dados</button>
-      <button class="edit-btn" onclick="exportCSV()">↓ CSV</button>
+      <button class="btn" onclick="exportCSV()">↓ Exportar CSV</button>
     </div>
   </div>
-
+ 
   <div class="tabs">
-    <div class="tab on" onclick="swTab('resultado',this)">📊 Resultado Mensal</div>
-    <div class="tab" onclick="swTab('centrocusto',this)">🏗️ Centro de Custo</div>
-    <div class="tab" onclick="swTab('clientes',this)">👥 Clientes</div>
-    <div class="tab" onclick="swTab('inadimplencia',this)">⚠️ Inadimplência</div>
-    <div class="tab" onclick="swTab('pessoal',this)">👷 Pessoal</div>
-    <div class="tab" onclick="swTab('custos',this)">📂 Custos por Categoria</div>
-    <div class="tab" onclick="swTab('risco',this)">🛡️ Análise de Risco</div>
+    <div class="tab on" onclick="sw('resultado',this)">📊 Resultado Mensal</div>
+    <div class="tab" onclick="sw('centrocusto',this)">🏗️ Centro de Custo</div>
+    <div class="tab" onclick="sw('clientes',this)">👥 Clientes</div>
+    <div class="tab" onclick="sw('inadimplencia',this)">⚠️ Inadimplência</div>
+    <div class="tab" onclick="sw('custos',this)">📂 Custos por Categoria</div>
+    <div class="tab" onclick="sw('risco',this)">🛡️ Análise de Risco</div>
   </div>
-
+ 
   <div class="main">
-
-    <!-- ===== ABA 1: RESULTADO MENSAL ===== -->
+ 
+    <!-- ABA 1: RESULTADO -->
     <div class="panel on" id="panel-resultado">
-      <div class="kpi-row kpi-row-4">
-        <div class="card card-sm">
-          <div class="kpi-label">Receita Total</div>
-          <div class="kpi-val mono" style="color:var(--green)">R$ 4,21M</div>
-          <div class="kpi-delta d-up">↑ 23 medições concluídas</div>
+      <div class="kpi-row r4">
+        <div class="card csm">
+          <div class="kl">Receita Total (Jan+Fev)</div>
+          <div class="kv" style="color:var(--green)">R$ 2,26M</div>
+          <div class="kd up">↑ Fechamento confirmado</div>
         </div>
-        <div class="card card-sm">
-          <div class="kpi-label">Custos Totais</div>
-          <div class="kpi-val mono" style="color:var(--red)">R$ 3,77M</div>
-          <div class="kpi-delta d-dn">↑ 89,6% da receita</div>
+        <div class="card csm">
+          <div class="kl">Resultado Líquido</div>
+          <div class="kv" style="color:var(--green)">R$ 811k</div>
+          <div class="kd up">Margem 35,8%</div>
         </div>
-        <div class="card card-sm">
-          <div class="kpi-label">Resultado Líquido</div>
-          <div class="kpi-val mono">R$ 443k</div>
-          <div class="kpi-delta d-up">Margem 10,5%</div>
+        <div class="card csm">
+          <div class="kl">Faturado (Recebido)</div>
+          <div class="kv mono">R$ 2,87M</div>
+          <div class="ks">Jan R$1,51M · Fev R$782k · Mar R$577k</div>
         </div>
-        <div class="card card-sm">
-          <div class="kpi-label">Meta Margem</div>
-          <div class="kpi-val mono" style="color:var(--yellow)">19,5%</div>
-          <div class="kpi-delta d-dn">↓ -9pp abaixo da meta</div>
-        </div>
-      </div>
-
-      <div class="chart-grid chart-2">
-        <div class="card">
-          <div class="card-title">Receita vs Custo Mensal</div>
-          <canvas id="chartRecCusto" height="200"></canvas>
-        </div>
-        <div class="card">
-          <div class="card-title">Margem Mensal (%)</div>
-          <canvas id="chartMargem" height="200"></canvas>
+        <div class="card csm">
+          <div class="kl">NFs Vencidas</div>
+          <div class="kv" style="color:var(--yellow)">R$ 89,9k</div>
+          <div class="kd warn">12 notas em aberto</div>
         </div>
       </div>
-
-      <div class="chart-grid chart-2">
+ 
+      <div class="g2">
         <div class="card">
-          <div class="card-title">Composição de Custos</div>
-          <canvas id="chartComposicao" height="180"></canvas>
+          <div class="ct">Receita vs Resultado por CC (Jan+Fev)</div>
+          <canvas id="c-recres" height="210"></canvas>
         </div>
         <div class="card">
-          <div class="card-title">Evolução do Resultado Acumulado</div>
-          <canvas id="chartAcumulado" height="180"></canvas>
+          <div class="ct">Faturamento Mensal Recebido</div>
+          <canvas id="c-fat" height="210"></canvas>
         </div>
       </div>
-
+ 
       <div class="card">
-        <div class="card-title">Resultado por Mês</div>
+        <div class="ct">Resultado por Centro de Custo — Fechamento Real</div>
         <table>
-          <thead><tr><th>Mês</th><th>Receita</th><th>Custo Direto</th><th>Mão de Obra</th><th>Indiretos</th><th>Impostos</th><th>Resultado</th><th>Margem</th></tr></thead>
-          <tbody id="tb-resultado"></tbody>
+          <thead><tr><th>Centro de Custo</th><th>Receita Jan</th><th>Resultado Jan</th><th>Receita Fev</th><th>Resultado Fev</th><th>Total Rec.</th><th>Total Res.</th><th>Margem</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Equipe Obras (Dante)</td>
+              <td class="mono">R$ 1.229.654</td>
+              <td class="mono" style="color:var(--green)">R$ 693.094</td>
+              <td class="mono">R$ 482.818</td>
+              <td class="mono" style="color:var(--green)">R$ 107.612</td>
+              <td class="mono">R$ 1.712.472</td>
+              <td class="mono" style="color:var(--green)">R$ 800.706</td>
+              <td class="mono" style="color:var(--green)">46,8%</td>
+            </tr>
+            <tr>
+              <td>Cajamar</td>
+              <td class="mono">R$ 174.081</td>
+              <td class="mono" style="color:var(--red)">-R$ 12.418</td>
+              <td class="mono">R$ 179.749</td>
+              <td class="mono" style="color:var(--green)">R$ 25.442</td>
+              <td class="mono">R$ 353.830</td>
+              <td class="mono" style="color:var(--green)">R$ 13.024</td>
+              <td class="mono" style="color:var(--yellow)">3,7%</td>
+            </tr>
+            <tr>
+              <td>Castelo 46</td>
+              <td class="mono">R$ 49.127</td>
+              <td class="mono" style="color:var(--red)">-R$ 7.641</td>
+              <td class="mono">R$ 65.559</td>
+              <td class="mono" style="color:var(--green)">R$ 17.907</td>
+              <td class="mono">R$ 114.686</td>
+              <td class="mono" style="color:var(--green)">R$ 10.266</td>
+              <td class="mono" style="color:var(--yellow)">9,0%</td>
+            </tr>
+            <tr>
+              <td>Cotia 39 + Itu</td>
+              <td class="mono">R$ 28.512</td>
+              <td class="mono" style="color:var(--red)">-R$ 28.038</td>
+              <td class="mono">R$ 54.473</td>
+              <td class="mono" style="color:var(--green)">R$ 15.556</td>
+              <td class="mono">R$ 82.985</td>
+              <td class="mono" style="color:var(--red)">-R$ 12.482</td>
+              <td class="mono" style="color:var(--red)">-15,0%</td>
+            </tr>
+            <tr style="font-weight:600;background:var(--bg3)">
+              <td>TOTAL GERAL</td>
+              <td class="mono">R$ 1.481.374</td>
+              <td class="mono" style="color:var(--green)">R$ 644.997</td>
+              <td class="mono">R$ 782.599</td>
+              <td class="mono" style="color:var(--green)">R$ 166.517</td>
+              <td class="mono">R$ 2.263.973</td>
+              <td class="mono" style="color:var(--green)">R$ 811.514</td>
+              <td class="mono" style="color:var(--green)">35,8%</td>
+            </tr>
+          </tbody>
         </table>
       </div>
     </div>
-
-    <!-- ===== ABA 2: CENTRO DE CUSTO ===== -->
+ 
+    <!-- ABA 2: CENTRO DE CUSTO -->
     <div class="panel" id="panel-centrocusto">
-      <div class="kpi-row kpi-row-3">
-        <div class="card card-sm">
-          <div class="kpi-label">Dante — Principal</div>
-          <div class="kpi-val mono">R$ 2,74M</div>
-          <div class="kpi-delta d-neu">65,1% do total</div>
+      <div class="kpi-row r4">
+        <div class="card csm">
+          <div class="kl">Equipe Obras (Dante)</div>
+          <div class="kv" style="color:var(--green)">R$ 800k res.</div>
+          <div class="kd up">46,8% margem · 75,6% da rec total</div>
         </div>
-        <div class="card card-sm">
-          <div class="kpi-label">Castelo</div>
-          <div class="kpi-val mono">R$ 762k</div>
-          <div class="kpi-delta d-neu">18,1%</div>
+        <div class="card csm">
+          <div class="kl">Cajamar</div>
+          <div class="kv mono">R$ 13k res.</div>
+          <div class="kd warn">3,7% margem · Jan negativo</div>
         </div>
-        <div class="card card-sm">
-          <div class="kpi-label">Cajamar</div>
-          <div class="kpi-val mono">R$ 704k</div>
-          <div class="kpi-delta d-neu">16,8%</div>
+        <div class="card csm">
+          <div class="kl">Castelo 46</div>
+          <div class="kv mono">R$ 10k res.</div>
+          <div class="kd warn">9,0% margem · Jan negativo</div>
+        </div>
+        <div class="card csm">
+          <div class="kl">Cotia 39 + Itu</div>
+          <div class="kv" style="color:var(--red)">-R$ 12k res.</div>
+          <div class="kd dn">-15,0% margem · Prejuízo</div>
         </div>
       </div>
-      <div class="chart-grid chart-2">
+      <div class="g2">
         <div class="card">
-          <div class="card-title">Distribuição por CC</div>
-          <canvas id="chartCC" height="200"></canvas>
+          <div class="ct">Receita por CC (Jan+Fev consolidado)</div>
+          <canvas id="c-cc-pie" height="210"></canvas>
         </div>
         <div class="card">
-          <div class="card-title">Evolução Mensal por CC</div>
-          <canvas id="chartCCMensal" height="200"></canvas>
+          <div class="ct">Resultado por CC — Janeiro vs Fevereiro</div>
+          <canvas id="c-cc-bar" height="210"></canvas>
         </div>
       </div>
       <div class="card">
-        <div class="card-title">Detalhe por Centro de Custo</div>
+        <div class="ct">Análise de Margem por CC</div>
         <table>
-          <thead><tr><th>CC</th><th>Receita</th><th>Custo</th><th>Resultado</th><th>Margem</th><th>Status</th></tr></thead>
+          <thead><tr><th>CC</th><th>Receita Total</th><th>Despesas</th><th>Indireto/Pro</th><th>Resultado</th><th>Margem</th><th>Status</th></tr></thead>
           <tbody>
-            <tr><td>Dante Principal</td><td class="mono">R$ 2.740.000</td><td class="mono">R$ 2.410.571</td><td class="mono" style="color:var(--green)">R$ 329.429</td><td class="mono">12,0%</td><td><span class="pill p-ok">Ativo</span></td></tr>
-            <tr><td>Castelo</td><td class="mono">R$ 762.000</td><td class="mono">R$ 694.000</td><td class="mono" style="color:var(--green)">R$ 68.000</td><td class="mono">8,9%</td><td><span class="pill p-ok">Ativo</span></td></tr>
-            <tr><td>Cajamar</td><td class="mono">R$ 704.000</td><td class="mono">R$ 668.000</td><td class="mono" style="color:var(--green)">R$ 36.000</td><td class="mono">5,1%</td><td><span class="pill p-at">Alerta</span></td></tr>
+            <tr><td>Equipe Obras</td><td class="mono">R$ 1.712.472</td><td class="mono">R$ 642.276</td><td class="mono">R$ 269.490</td><td class="mono" style="color:var(--green)">R$ 800.706</td><td class="mono" style="color:var(--green)">46,8%</td><td><span class="pill p-ok">Saudável</span></td></tr>
+            <tr><td>Cajamar</td><td class="mono">R$ 353.830</td><td class="mono">R$ 295.182</td><td class="mono">R$ 45.624</td><td class="mono" style="color:var(--green)">R$ 13.024</td><td class="mono" style="color:var(--yellow)">3,7%</td><td><span class="pill p-at">Alerta</span></td></tr>
+            <tr><td>Castelo 46</td><td class="mono">R$ 114.686</td><td class="mono">R$ 87.812</td><td class="mono">R$ 16.608</td><td class="mono" style="color:var(--green)">R$ 10.266</td><td class="mono" style="color:var(--yellow)">9,0%</td><td><span class="pill p-at">Alerta</span></td></tr>
+            <tr><td>Cotia 39 + Itu</td><td class="mono">R$ 82.985</td><td class="mono">R$ 90.333</td><td class="mono">R$ 5.134</td><td class="mono" style="color:var(--red)">-R$ 12.482</td><td class="mono" style="color:var(--red)">-15,0%</td><td><span class="pill p-ng">Prejuízo</span></td></tr>
           </tbody>
         </table>
+        <div style="margin-top:14px;padding:12px;background:var(--yellow-bg);border-radius:var(--radius);border:1px solid var(--yellow);font-size:12px;color:var(--yellow)">
+          ⚠️ <strong>Atenção Cotia 39:</strong> despesas superam receitas em R$ 7.348 — o CC está consumindo caixa. Verificar se há medições pendentes de faturamento ou revisão de custos alocados.
+        </div>
       </div>
     </div>
-
-    <!-- ===== ABA 3: CLIENTES ===== -->
+ 
+    <!-- ABA 3: CLIENTES -->
     <div class="panel" id="panel-clientes">
-      <div class="kpi-row kpi-row-4">
-        <div class="card card-sm"><div class="kpi-label">Clientes Ativos</div><div class="kpi-val mono">8</div></div>
-        <div class="card card-sm"><div class="kpi-label">Ticket Médio</div><div class="kpi-val mono">R$ 526k</div></div>
-        <div class="card card-sm"><div class="kpi-label">PMR Médio</div><div class="kpi-val mono" style="color:var(--yellow)">47 dias</div><div class="kpi-delta d-warn">Meta: 35 dias</div></div>
-        <div class="card card-sm"><div class="kpi-label">Top Cliente %</div><div class="kpi-val mono" style="color:var(--red)">51%</div><div class="kpi-delta d-dn">Concentrado</div></div>
+      <div class="kpi-row r4">
+        <div class="card csm"><div class="kl">Maior Cliente</div><div class="kv mono" style="color:var(--red)">57,7%</div><div class="ks">Racional Engenharia</div></div>
+        <div class="card csm"><div class="kl">Top 2 Concentração</div><div class="kv mono" style="color:var(--red)">83,6%</div><div class="ks">Racional + Prologis</div></div>
+        <div class="card csm"><div class="kl">Faturado Identificado</div><div class="kv mono">R$ 2,12M</div><div class="ks">Jan a Mar/2026</div></div>
+        <div class="card csm"><div class="kl">Clientes Ativos</div><div class="kv mono">7+</div><div class="ks">Identificados na planilha</div></div>
       </div>
-      <div class="chart-grid chart-32">
+      <div class="g32">
         <div class="card">
-          <div class="card-title">Faturamento por Cliente</div>
-          <canvas id="chartClientes" height="220"></canvas>
+          <div class="ct">Faturamento por Cliente (Jan–Mar/2026)</div>
+          <canvas id="c-cli" height="230"></canvas>
         </div>
         <div class="card">
-          <div class="card-title">Concentração de Receita</div>
-          <canvas id="chartConcentracao" height="220"></canvas>
+          <div class="ct">Concentração de Receita</div>
+          <canvas id="c-conc" height="230"></canvas>
         </div>
       </div>
       <div class="card">
-        <div class="card-title">Base de Clientes</div>
+        <div class="ct">Base de Clientes — Detalhado</div>
         <table>
-          <thead><tr><th>Cliente</th><th>Faturado</th><th>%Total</th><th>PMR</th><th>A Receber</th><th>Status</th></tr></thead>
+          <thead><tr><th>Cliente</th><th>Faturado</th><th>% Total</th><th>Tipo</th><th>CC</th></tr></thead>
           <tbody>
-            <tr><td>Prefeitura de Jundiaí</td><td class="mono">R$ 2.149k</td><td class="mono">51,0%</td><td class="mono" style="color:var(--red)">62d</td><td class="mono">R$ 412k</td><td><span class="pill p-ok">Regular</span></td></tr>
-            <tr><td>DER-SP</td><td class="mono">R$ 723k</td><td class="mono">17,2%</td><td class="mono" style="color:var(--yellow)">45d</td><td class="mono">R$ 98k</td><td><span class="pill p-ok">Regular</span></td></tr>
-            <tr><td>Via Oeste CCR</td><td class="mono">R$ 512k</td><td class="mono">12,2%</td><td class="mono">30d</td><td class="mono">R$ 0</td><td><span class="pill p-ok">Quitado</span></td></tr>
-            <tr><td>Construtora Noval</td><td class="mono">R$ 380k</td><td class="mono">9,0%</td><td class="mono" style="color:var(--red)">75d</td><td class="mono">R$ 61k</td><td><span class="pill p-ng">Vencida</span></td></tr>
-            <tr><td>Outros (4)</td><td class="mono">R$ 446k</td><td class="mono">10,6%</td><td class="mono">35d</td><td class="mono">R$ 84k</td><td><span class="pill p-ok">Regular</span></td></tr>
+            <tr><td>Racional Engenharia</td><td class="mono">R$ 1.220.817</td><td class="mono" style="color:var(--red)">57,7%<span class="bw"><span class="bf" style="width:57.7%;background:var(--red)"></span></span></td><td><span class="pill p-az">Obras</span></td><td>Equipe Obras</td></tr>
+            <tr><td>Prologis Brazil</td><td class="mono">R$ 548.124</td><td class="mono" style="color:var(--yellow)">25,9%<span class="bw"><span class="bf" style="width:25.9%;background:var(--yellow)"></span></span></td><td><span class="pill p-az">Condomínios</span></td><td>Cajamar</td></tr>
+            <tr><td>Mercado Livre (Castelo)</td><td class="mono">R$ 96.066</td><td class="mono">4,5%</td><td><span class="pill p-ok">Manutenção</span></td><td>Castelo 46</td></tr>
+            <tr><td>Monin Brasil</td><td class="mono">R$ 89.819</td><td class="mono">4,2%</td><td><span class="pill p-ok">Fixo</span></td><td>Cotia 39</td></tr>
+            <tr><td>Microsoft</td><td class="mono">R$ 71.045</td><td class="mono">3,4%</td><td><span class="pill p-ok">Fixo</span></td><td>Equipe Obras</td></tr>
+            <tr><td>Assoc. Anhanguera</td><td class="mono">R$ 46.541</td><td class="mono">2,2%</td><td><span class="pill p-ok">Fixo</span></td><td>Cajamar</td></tr>
+            <tr><td>Acciona</td><td class="mono">R$ 44.522</td><td class="mono">2,1%</td><td><span class="pill p-az">Obras</span></td><td>Equipe Obras</td></tr>
           </tbody>
         </table>
       </div>
     </div>
-
-    <!-- ===== ABA 4: INADIMPLÊNCIA ===== -->
+ 
+    <!-- ABA 4: INADIMPLÊNCIA -->
     <div class="panel" id="panel-inadimplencia">
-      <div class="kpi-row kpi-row-4">
-        <div class="card card-sm"><div class="kpi-label">Total Vencido</div><div class="kpi-val mono" style="color:var(--red)">R$ 337k</div></div>
-        <div class="card card-sm"><div class="kpi-label">NFs Vencidas</div><div class="kpi-val mono">22</div></div>
-        <div class="card card-sm"><div class="kpi-label">Média Atraso</div><div class="kpi-val mono" style="color:var(--yellow)">41 dias</div></div>
-        <div class="card card-sm"><div class="kpi-label">% Receita Total</div><div class="kpi-val mono" style="color:var(--red)">8,0%</div></div>
+      <div class="kpi-row r4">
+        <div class="card csm"><div class="kl">Total Vencido</div><div class="kv" style="color:var(--red)">R$ 89,9k</div></div>
+        <div class="card csm"><div class="kl">NFs em Aberto</div><div class="kv mono">12</div></div>
+        <div class="card csm"><div class="kl">Mais Antigo</div><div class="kv mono" style="color:var(--red)">832 dias</div><div class="ks">NF 211 — FDR (Dez/2023)</div></div>
+        <div class="card csm"><div class="kl">% da Receita</div><div class="kv mono" style="color:var(--yellow)">4,0%</div><div class="ks">de R$ 2,26M</div></div>
       </div>
-      <div class="card">
-        <div class="card-title">NFs Vencidas — Controle Ativo</div>
-        <table>
-          <thead><tr><th>NF / Medição</th><th>Cliente</th><th>Valor</th><th>Vencimento</th><th>Atraso</th><th>Situação</th></tr></thead>
-          <tbody>
-            <tr><td>NF 1038 — Med. final</td><td>Construtora Noval</td><td class="mono">R$ 61k</td><td class="mono">15/03/2026</td><td class="mono" style="color:var(--red)">11d</td><td><span class="pill p-ng">Vencida</span></td></tr>
-            <tr><td>NF 211 — Parcela 2</td><td>FDR Independência</td><td class="mono">R$ 48k</td><td class="mono">12/11/2025</td><td class="mono" style="color:var(--red)">135d</td><td><span class="pill p-ng">Crítico</span></td></tr>
-            <tr><td>NF 198 — Med. 3</td><td>Agronave</td><td class="mono">R$ 37k</td><td class="mono">05/01/2026</td><td class="mono" style="color:var(--red)">80d</td><td><span class="pill p-ng">Crítico</span></td></tr>
-            <tr><td>NF 1035 — Med. 1</td><td>Prefeitura Jundiaí</td><td class="mono">R$ 42k</td><td class="mono">05/04/2026</td><td class="mono" style="color:var(--green)">-10d</td><td><span class="pill p-ok">No prazo</span></td></tr>
-            <tr><td>NF 1042 — Med. 3</td><td>Via Oeste CCR</td><td class="mono">R$ 98k</td><td class="mono">28/03/2026</td><td class="mono" style="color:var(--yellow)">-2d</td><td><span class="pill p-at">Vence hoje</span></td></tr>
-            <tr><td>Outras 17 NFs</td><td>Diversos</td><td class="mono">R$ 51k</td><td>—</td><td>—</td><td><span class="pill p-at">Verificar</span></td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <!-- ===== ABA 5: PESSOAL ===== -->
-    <div class="panel" id="panel-pessoal">
-      <div class="kpi-row kpi-row-4">
-        <div class="card card-sm"><div class="kpi-label">Headcount</div><div class="kpi-val mono">38</div></div>
-        <div class="card card-sm"><div class="kpi-label">Folha Total</div><div class="kpi-val mono">R$ 911k</div><div class="kpi-sub">incluindo encargos</div></div>
-        <div class="card card-sm"><div class="kpi-label">Custo/Pessoa/Mês</div><div class="kpi-val mono" style="color:var(--yellow)">R$ 23,97k</div></div>
-        <div class="card card-sm"><div class="kpi-label">% Receita</div><div class="kpi-val mono">21,6%</div></div>
-      </div>
-      <div class="chart-grid chart-2">
+      <div class="g2">
         <div class="card">
-          <div class="card-title">Distribuição por Função</div>
-          <canvas id="chartFuncao" height="200"></canvas>
+          <div class="ct">NFs Vencidas por Valor</div>
+          <canvas id="c-nf" height="220"></canvas>
         </div>
         <div class="card">
-          <div class="card-title">Composição do Custo de Pessoal</div>
-          <canvas id="chartPessoal" height="200"></canvas>
+          <div class="ct">Aging — Distribuição por Prazo de Atraso</div>
+          <canvas id="c-aging" height="220"></canvas>
         </div>
       </div>
       <div class="card">
-        <div class="card-title">Equipe — Quadro Resumido</div>
+        <div class="ct">NFs Vencidas — Controle Ativo (Dados Reais)</div>
         <table>
-          <thead><tr><th>Função</th><th>Qtd</th><th>Salário Base</th><th>Insalubridade</th><th>VR/VT</th><th>Encargos est.</th><th>Total Mensal</th></tr></thead>
+          <thead><tr><th>NF</th><th>Cliente</th><th>Valor</th><th>Vencimento</th><th>Atraso</th><th>Obs</th><th>Prioridade</th></tr></thead>
           <tbody>
-            <tr><td>Operador</td><td class="mono">12</td><td class="mono">R$ 2.100</td><td class="mono">R$ 420</td><td class="mono">R$ 380</td><td class="mono">R$ 780</td><td class="mono">R$ 3.680 × 12</td></tr>
-            <tr><td>Aux. Operações</td><td class="mono">8</td><td class="mono">R$ 1.800</td><td class="mono">R$ 360</td><td class="mono">R$ 380</td><td class="mono">R$ 660</td><td class="mono">R$ 3.200 × 8</td></tr>
-            <tr><td>Técnico de Campo</td><td class="mono">6</td><td class="mono">R$ 3.200</td><td class="mono">R$ 640</td><td class="mono">R$ 380</td><td class="mono">R$ 1.180</td><td class="mono">R$ 5.400 × 6</td></tr>
-            <tr><td>Supervisor</td><td class="mono">4</td><td class="mono">R$ 5.500</td><td class="mono">R$ 0</td><td class="mono">R$ 380</td><td class="mono">R$ 1.760</td><td class="mono">R$ 7.640 × 4</td></tr>
-            <tr><td>Coord./Eng.</td><td class="mono">3</td><td class="mono">R$ 8.000</td><td class="mono">R$ 0</td><td class="mono">R$ 0</td><td class="mono">R$ 2.560</td><td class="mono">R$ 10.560 × 3</td></tr>
-            <tr><td>Adm./Financeiro</td><td class="mono">3</td><td class="mono">R$ 3.500</td><td class="mono">R$ 0</td><td class="mono">R$ 380</td><td class="mono">R$ 1.120</td><td class="mono">R$ 5.000 × 3</td></tr>
-            <tr><td>Gerência</td><td class="mono">2</td><td class="mono">R$ 12.000</td><td class="mono">R$ 0</td><td class="mono">R$ 0</td><td class="mono">R$ 3.840</td><td class="mono">R$ 15.840 × 2</td></tr>
+            <tr><td>NF 211</td><td>FDR Independência</td><td class="mono">R$ 12.500</td><td class="mono">21/12/2023</td><td class="mono" style="color:var(--red)">832d</td><td style="color:var(--text2);font-size:11px">Jaque está vendo</td><td><span class="pill p-ng">Crítico</span></td></tr>
+            <tr><td>NF 1487+2195</td><td>Res. Monte Serrat</td><td class="mono">R$ 10.200</td><td class="mono">14/02/2025</td><td class="mono" style="color:var(--red)">405d</td><td style="color:var(--text2);font-size:11px">Protestado</td><td><span class="pill p-ng">Crítico</span></td></tr>
+            <tr><td>NF 1611+2381</td><td>MTSNI Empreendimentos</td><td class="mono">R$ 1.400</td><td class="mono">20/09/2025</td><td class="mono" style="color:var(--red)">187d</td><td style="color:var(--text2);font-size:11px">Cobrado email 23/09</td><td><span class="pill p-ng">Crítico</span></td></tr>
+            <tr><td>NF 31</td><td>Acciona Construccion</td><td class="mono">R$ 45.129</td><td class="mono">23/02/2026</td><td class="mono" style="color:var(--red)">31d</td><td style="color:var(--text2);font-size:11px">—</td><td><span class="pill p-ng">Urgente</span></td></tr>
+            <tr><td>NF 35+392</td><td>FWI Empreend. (Castelo 57)</td><td class="mono">R$ 8.800</td><td class="mono">05/02/2026</td><td class="mono" style="color:var(--red)">49d</td><td style="color:var(--text2);font-size:11px">—</td><td><span class="pill p-at">Alto</span></td></tr>
+            <tr><td>NF 03+394</td><td>Cond. Prologis Jundiaí</td><td class="mono">R$ 10.850</td><td class="mono">15/03/2026</td><td class="mono" style="color:var(--yellow)">11d</td><td style="color:var(--text2);font-size:11px">—</td><td><span class="pill p-at">Médio</span></td></tr>
+            <tr><td>NF 39+1758</td><td>3PL Brasil</td><td class="mono">R$ 1.050</td><td class="mono">04/03/2026</td><td class="mono" style="color:var(--yellow)">22d</td><td style="color:var(--text2);font-size:11px">—</td><td><span class="pill p-at">Médio</span></td></tr>
           </tbody>
         </table>
+        <div style="margin-top:12px;padding:12px;background:var(--red-bg);border-radius:var(--radius);border:1px solid var(--red);font-size:12px;color:var(--red)">
+          🔴 <strong>NF 31 (Acciona R$45.129)</strong> é a maior NF vencida — representa 50,2% de todo o vencido. Acionar cobrança imediatamente.
+        </div>
       </div>
     </div>
-
-    <!-- ===== ABA 6: CUSTOS POR CATEGORIA ===== -->
+ 
+    <!-- ABA 5: CUSTOS POR CATEGORIA -->
     <div class="panel" id="panel-custos">
-      <div class="kpi-row kpi-row-4">
-        <div class="card card-sm">
-          <div class="kpi-label">Custo Total Obra</div>
-          <div class="kpi-val mono" style="color:var(--red)">R$ 3,77M</div>
-          <div class="kpi-sub">100% do total de custos</div>
+      <div class="kpi-row r4">
+        <div class="card csm">
+          <div class="kl">Insumos/Materiais (Jan+Fev)</div>
+          <div class="kv" style="color:var(--blue)">R$ 2,48M</div>
+          <div class="kd neu">principal categoria</div>
         </div>
-        <div class="card card-sm">
-          <div class="kpi-label">Maior Categoria</div>
-          <div class="kpi-val mono">Custos Diretos</div>
-          <div class="kpi-delta d-neu">58,7% — R$ 2,21M</div>
+        <div class="card csm">
+          <div class="kl">Folha de Pessoal</div>
+          <div class="kv mono">R$ 725k</div>
+          <div class="kd neu">Jan R$370k · Fev R$355k</div>
         </div>
-        <div class="card card-sm">
-          <div class="kpi-label">Folha + Encargos</div>
-          <div class="kpi-val mono" style="color:var(--yellow)">R$ 911k</div>
-          <div class="kpi-delta d-warn">24,2% do total</div>
+        <div class="card csm">
+          <div class="kl">Equipamentos/EPI</div>
+          <div class="kv mono">R$ 73k</div>
+          <div class="kd neu">Jan R$36k · Fev R$36k</div>
         </div>
-        <div class="card card-sm">
-          <div class="kpi-label">Impostos / Dedutíveis</div>
-          <div class="kpi-val mono">R$ 444k</div>
-          <div class="kpi-delta d-dn">11,8% — maior que meta</div>
-        </div>
-      </div>
-
-      <div class="chart-grid chart-2">
-        <div class="card">
-          <div class="card-title">Distribuição de Custos por Categoria</div>
-          <canvas id="chartCustoCat" height="220"></canvas>
-        </div>
-        <div class="card">
-          <div class="card-title">Evolução Mensal — Top 4 Categorias</div>
-          <canvas id="chartCustoMensal" height="220"></canvas>
+        <div class="card csm">
+          <div class="kl">Combustível</div>
+          <div class="kv mono">R$ 38k</div>
+          <div class="kd neu">Jan R$20k · Fev R$18k</div>
         </div>
       </div>
-
-      <div class="chart-grid chart-2">
+ 
+      <div class="g2">
         <div class="card">
-          <div class="card-title">Estratificação Detalhada — % do Total</div>
-          <div style="margin-top:4px">
-            <!-- Custos Diretos -->
-            <div class="section-title" style="margin-top:8px">Custos Diretos — R$ 2.210.571 (58,7%)</div>
-            <div class="cost-bar-row"><span class="cost-bar-label">Insumos/Materiais</span><div class="cost-bar-track"><div class="cost-bar-fill" style="width:38%;background:#58a6ff"></div></div><span class="cost-bar-val">R$ 839k</span><span class="cost-bar-pct">22,3%</span></div>
-            <div class="cost-bar-row"><span class="cost-bar-label">Subcontratados</span><div class="cost-bar-track"><div class="cost-bar-fill" style="width:28%;background:#79c0ff"></div></div><span class="cost-bar-val">R$ 632k</span><span class="cost-bar-pct">16,8%</span></div>
-            <div class="cost-bar-row"><span class="cost-bar-label">Combustível</span><div class="cost-bar-track"><div class="cost-bar-fill" style="width:18%;background:#388bfd"></div></div><span class="cost-bar-val">R$ 412k</span><span class="cost-bar-pct">10,9%</span></div>
-            <div class="cost-bar-row"><span class="cost-bar-label">Equip./Ferramentas</span><div class="cost-bar-track"><div class="cost-bar-fill" style="width:14%;background:#1f6feb"></div></div><span class="cost-bar-val">R$ 328k</span><span class="cost-bar-pct">8,7%</span></div>
+          <div class="ct">Custos Identificados por Categoria</div>
+          <canvas id="c-cat-pie" height="220"></canvas>
+        </div>
+        <div class="card">
+          <div class="ct">Janeiro vs Fevereiro — Top Categorias</div>
+          <canvas id="c-cat-bar" height="220"></canvas>
+        </div>
+      </div>
+ 
+      <div class="g2">
+        <div class="card">
+          <div class="ct">Estratificação Detalhada — Jan+Fev</div>
+          <div style="margin-top:8px">
+            <div class="stitle">Insumos e Materiais — R$ 2.482.358</div>
+            <div class="cbr"><span class="cbl">Mudas/Plantas</span><div class="cbt"><div class="cbf" style="width:72%;background:#1f6feb"></div></div><span class="cbv">R$ 1.790k</span><span class="cbp">72,1%</span></div>
+            <div class="cbr"><span class="cbl">Hidrogel/Insumos</span><div class="cbt"><div class="cbf" style="width:16%;background:#388bfd"></div></div><span class="cbv">R$ 397k</span><span class="cbp">16,0%</span></div>
+            <div class="cbr"><span class="cbl">Outros Mat.</span><div class="cbt"><div class="cbf" style="width:12%;background:#58a6ff"></div></div><span class="cbv">R$ 295k</span><span class="cbp">11,9%</span></div>
             <div class="sep"></div>
-            <!-- Mão de Obra -->
-            <div class="section-title">Mão de Obra — R$ 911.299 (24,2%)</div>
-            <div class="cost-bar-row"><span class="cost-bar-label">Salários</span><div class="cost-bar-track"><div class="cost-bar-fill" style="width:52%;background:#3fb950"></div></div><span class="cost-bar-val">R$ 531k</span><span class="cost-bar-pct">14,1%</span></div>
-            <div class="cost-bar-row"><span class="cost-bar-label">FGTS + INSS</span><div class="cost-bar-track"><div class="cost-bar-fill" style="width:22%;background:#2ea043"></div></div><span class="cost-bar-val">R$ 214k</span><span class="cost-bar-pct">5,7%</span></div>
-            <div class="cost-bar-row"><span class="cost-bar-label">Provisões (13°/Fér)</span><div class="cost-bar-track"><div class="cost-bar-fill" style="width:10%;background:#196c2e"></div></div><span class="cost-bar-val">R$ 109k</span><span class="cost-bar-pct">2,9%</span></div>
-            <div class="cost-bar-row"><span class="cost-bar-label">VR / VT / Insalubridade</span><div class="cost-bar-track"><div class="cost-bar-fill" style="width:5%;background:#0d4a1a"></div></div><span class="cost-bar-val">R$ 57k</span><span class="cost-bar-pct">1,5%</span></div>
+            <div class="stitle">Folha de Pessoal — R$ 725.915</div>
+            <div class="cbr"><span class="cbl">Salários/Comiss.</span><div class="cbt"><div class="cbf" style="width:68%;background:#2ea043"></div></div><span class="cbv">R$ 493k</span><span class="cbp">67,9%</span></div>
+            <div class="cbr"><span class="cbl">INSS/FGTS/Conv.</span><div class="cbt"><div class="cbf" style="width:23%;background:#196c2e"></div></div><span class="cbv">R$ 167k</span><span class="cbp">23,0%</span></div>
+            <div class="cbr"><span class="cbl">Pró-labore JG+MG</span><div class="cbt"><div class="cbf" style="width:9%;background:#0d4a1a"></div></div><span class="cbv">R$ 65k</span><span class="cbp">9,1%</span></div>
             <div class="sep"></div>
-            <!-- Indiretos -->
-            <div class="section-title">Custos Indiretos — R$ 648.899 (17,2%)</div>
-            <div class="cost-bar-row"><span class="cost-bar-label">Aluguel/Locação</span><div class="cost-bar-track"><div class="cost-bar-fill" style="width:20%;background:#d29922"></div></div><span class="cost-bar-val">R$ 198k</span><span class="cost-bar-pct">5,3%</span></div>
-            <div class="cost-bar-row"><span class="cost-bar-label">Transporte</span><div class="cost-bar-track"><div class="cost-bar-fill" style="width:15%;background:#bb8009"></div></div><span class="cost-bar-val">R$ 152k</span><span class="cost-bar-pct">4,0%</span></div>
-            <div class="cost-bar-row"><span class="cost-bar-label">Adm./Overhead</span><div class="cost-bar-track"><div class="cost-bar-fill" style="width:12%;background:#9e6a03"></div></div><span class="cost-bar-val">R$ 178k</span><span class="cost-bar-pct">4,7%</span></div>
-            <div class="cost-bar-row"><span class="cost-bar-label">Manutenção Equip.</span><div class="cost-bar-track"><div class="cost-bar-fill" style="width:7%;background:#7a4f00"></div></div><span class="cost-bar-val">R$ 121k</span><span class="cost-bar-pct">3,2%</span></div>
-            <div class="sep"></div>
-            <!-- Impostos -->
-            <div class="section-title">Impostos / Deduções — R$ 443.531 (11,8%)</div>
-            <div class="cost-bar-row"><span class="cost-bar-label">ISS + PIS/COFINS</span><div class="cost-bar-track"><div class="cost-bar-fill" style="width:25%;background:#f85149"></div></div><span class="cost-bar-val">R$ 262k</span><span class="cost-bar-pct">7,0%</span></div>
-            <div class="cost-bar-row"><span class="cost-bar-label">IRPJ / CSLL</span><div class="cost-bar-track"><div class="cost-bar-fill" style="width:12%;background:#da3633"></div></div><span class="cost-bar-val">R$ 121k</span><span class="cost-bar-pct">3,2%</span></div>
-            <div class="cost-bar-row"><span class="cost-bar-label">Outros tributos</span><div class="cost-bar-track"><div class="cost-bar-fill" style="width:6%;background:#b62324"></div></div><span class="cost-bar-val">R$ 61k</span><span class="cost-bar-pct">1,6%</span></div>
+            <div class="stitle">Demais Categorias</div>
+            <div class="cbr"><span class="cbl">Equipamentos/EPI</span><div class="cbt"><div class="cbf" style="width:44%;background:#d29922"></div></div><span class="cbv">R$ 73k</span><span class="cbp">—</span></div>
+            <div class="cbr"><span class="cbl">Indireto/Banco</span><div class="cbt"><div class="cbf" style="width:45%;background:#9e6a03"></div></div><span class="cbv">R$ 74k</span><span class="cbp">—</span></div>
+            <div class="cbr"><span class="cbl">Combustível</span><div class="cbt"><div class="cbf" style="width:23%;background:#f85149"></div></div><span class="cbv">R$ 38k</span><span class="cbp">—</span></div>
+            <div class="cbr"><span class="cbl">Aluguel/Locação</span><div class="cbt"><div class="cbf" style="width:10%;background:#da3633"></div></div><span class="cbv">R$ 16k</span><span class="cbp">—</span></div>
+            <div class="cbr"><span class="cbl">Transporte</span><div class="cbt"><div class="cbf" style="width:16%;background:#bc8cff"></div></div><span class="cbv">R$ 26k</span><span class="cbp">—</span></div>
           </div>
         </div>
-
+ 
         <div class="card">
-          <div class="card-title">Resumo Executivo de Custos</div>
+          <div class="ct">Resumo Categórico</div>
           <table>
-            <thead><tr><th>Categoria</th><th>Total</th><th>% Custo</th><th>% Receita</th><th>Status</th></tr></thead>
+            <thead><tr><th>Categoria</th><th>Jan</th><th>Fev</th><th>Total</th></tr></thead>
             <tbody>
-              <tr><td>Custos Diretos</td><td class="mono">R$ 2.211k</td><td class="mono">58,7%</td><td class="mono">52,5%</td><td><span class="pill p-at">Alto</span></td></tr>
-              <tr><td>└ Insumos/Mat.</td><td class="mono">R$ 839k</td><td class="mono">22,3%</td><td class="mono">19,9%</td><td><span class="pill p-at">Monitorar</span></td></tr>
-              <tr><td>└ Combustível</td><td class="mono">R$ 412k</td><td class="mono">10,9%</td><td class="mono">9,8%</td><td><span class="pill p-ng">Crítico</span></td></tr>
-              <tr><td>Mão de Obra</td><td class="mono">R$ 911k</td><td class="mono">24,2%</td><td class="mono">21,6%</td><td><span class="pill p-at">Alto</span></td></tr>
-              <tr><td>└ Salários+Enc.</td><td class="mono">R$ 745k</td><td class="mono">19,8%</td><td class="mono">17,7%</td><td><span class="pill p-ok">Normal</span></td></tr>
-              <tr><td>Indiretos</td><td class="mono">R$ 649k</td><td class="mono">17,2%</td><td class="mono">15,4%</td><td><span class="pill p-ok">Normal</span></td></tr>
-              <tr><td>Impostos</td><td class="mono">R$ 444k</td><td class="mono">11,8%</td><td class="mono">10,5%</td><td><span class="pill p-ng">Acima meta</span></td></tr>
-              <tr style="font-weight:600"><td>TOTAL</td><td class="mono">R$ 3.214k</td><td class="mono">100%</td><td class="mono">89,5%</td><td><span class="pill p-ng">Margem 10,5%</span></td></tr>
+              <tr><td>Insumos/Materiais</td><td class="mono">R$ 487k</td><td class="mono">R$ 1.995k</td><td class="mono" style="color:var(--blue)">R$ 2.482k</td></tr>
+              <tr><td>Folha+Encargos</td><td class="mono">R$ 370k</td><td class="mono">R$ 355k</td><td class="mono">R$ 725k</td></tr>
+              <tr><td>Equipamentos/EPI</td><td class="mono">R$ 36k</td><td class="mono">R$ 36k</td><td class="mono">R$ 72k</td></tr>
+              <tr><td>Indireto/Banco</td><td class="mono">R$ 38k</td><td class="mono">R$ 35k</td><td class="mono">R$ 73k</td></tr>
+              <tr><td>Combustível</td><td class="mono">R$ 20k</td><td class="mono">R$ 18k</td><td class="mono">R$ 38k</td></tr>
+              <tr><td>Transporte</td><td class="mono">R$ 3k</td><td class="mono">R$ 22k</td><td class="mono">R$ 25k</td></tr>
+              <tr><td>Aluguel/Locação</td><td class="mono">R$ 5k</td><td class="mono">R$ 10k</td><td class="mono">R$ 15k</td></tr>
+              <tr style="font-weight:600"><td>Identificado</td><td class="mono">R$ 959k</td><td class="mono">R$ 2.471k</td><td class="mono">R$ 3.430k</td></tr>
+            </tbody>
+          </table>
+          <div style="margin-top:12px;padding:10px;background:var(--blue-bg);border-radius:6px;font-size:12px;color:var(--blue)">
+            ℹ️ Os lançamentos restantes incluem transferências entre contas, aplicações financeiras e pagamentos de grande porte a fornecedores de obras (classificados como "outros" na extração automática).
+          </div>
+        </div>
+      </div>
+    </div>
+ 
+    <!-- ABA 6: ANÁLISE DE RISCO -->
+    <div class="panel" id="panel-risco">
+      <div class="kpi-row r5">
+        <div class="card csm">
+          <div class="kl">Score de Risco</div>
+          <div class="kv" style="color:var(--red)">ALTO</div>
+          <div class="kd dn">Concentração crítica</div>
+        </div>
+        <div class="card csm">
+          <div class="kl">Concentração Top 1</div>
+          <div class="kv" style="color:var(--red)">57,7%</div>
+          <div class="ks">Racional Engenharia</div>
+        </div>
+        <div class="card csm">
+          <div class="kl">Concentração Top 2</div>
+          <div class="kv" style="color:var(--red)">83,6%</div>
+          <div class="ks">+Prologis Brazil</div>
+        </div>
+        <div class="card csm">
+          <div class="kl">NFs Vencidas</div>
+          <div class="kv" style="color:var(--yellow)">R$ 89,9k</div>
+          <div class="ks">12 notas · maior 832d</div>
+        </div>
+        <div class="card csm">
+          <div class="kl">CC com Prejuízo</div>
+          <div class="kv" style="color:var(--red)">Cotia 39</div>
+          <div class="ks">-15% margem · -R$12k</div>
+        </div>
+      </div>
+ 
+      <div class="g2">
+        <div class="card">
+          <div class="ct">🎯 Concentração de Receita — Risco <span class="badge bg-r">CRÍTICO</span></div>
+          <canvas id="c-risco-conc" height="180"></canvas>
+          <div style="margin-top:12px">
+            <div class="rb high">
+              <span class="rv" style="color:var(--red)">57,7%</span>
+              <div class="rt">Racional Engenharia — dependência única</div>
+              <div class="rd">R$ 1,22M dos R$ 2,12M identificados vêm de um único cliente. Qualquer atraso de medição, distrato ou problema contratual com a Racional paralisa o fluxo de caixa.</div>
+            </div>
+            <div class="rb high">
+              <span class="rv" style="color:var(--red)">83,6%</span>
+              <div class="rt">Top 2 clientes = 83,6% da receita</div>
+              <div class="rd">Adicionando a Prologis Brazil (25,9%), dois clientes respondem por 83,6% do faturamento. Benchmark saudável: nenhum cliente acima de 30%, top 3 abaixo de 60%.</div>
+            </div>
+          </div>
+        </div>
+ 
+        <div class="card">
+          <div class="ct">🏗️ CCs com Margem Negativa — Risco <span class="badge bg-y">MÉDIO</span></div>
+          <canvas id="c-risco-cc" height="180"></canvas>
+          <div style="margin-top:12px">
+            <div class="rb high">
+              <span class="rv" style="color:var(--red)">-15,0%</span>
+              <div class="rt">Cotia 39 + Itu — Prejuízo consistente</div>
+              <div class="rd">Em janeiro a margem foi -98,4% (desp. R$56k × rec. R$28k). Fevereiro melhorou mas ainda -15%. Risco de esse CC estar drenando caixa sem contrapartida.</div>
+            </div>
+            <div class="rb med">
+              <span class="rv" style="color:var(--yellow)">3,7%</span>
+              <div class="rt">Cajamar — Margem muito baixa</div>
+              <div class="rd">Receita de R$353k com resultado de apenas R$13k. Em janeiro operou no negativo. Monitorar custos de mão-de-obra alocada.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+ 
+      <div class="g2">
+        <div class="card">
+          <div class="ct">💰 Capital Travado em Inadimplência — Risco <span class="badge bg-y">MÉDIO</span></div>
+          <canvas id="c-risco-nf" height="160"></canvas>
+          <div style="margin-top:12px">
+            <div class="rb high">
+              <span class="rv" style="color:var(--red)">R$ 45.129</span>
+              <div class="rt">NF 31 — Acciona Construccion (31 dias)</div>
+              <div class="rd">Maior NF vencida individual. 31 dias de atraso sem obs. de cobrança registrada. Prioridade máxima — contato imediato.</div>
+            </div>
+            <div class="rb med">
+              <span class="rv" style="color:var(--yellow)">R$ 12.500</span>
+              <div class="rt">NF 211 — FDR Independência (832 dias)</div>
+              <div class="rd">Mais de 2 anos vencida. Avaliar viabilidade de cobrança judicial ou provisão para devedores duvidosos.</div>
+            </div>
+          </div>
+        </div>
+ 
+        <div class="card">
+          <div class="ct">📋 Matriz de Riscos — Ações Prioritárias</div>
+          <table>
+            <thead><tr><th>Risco</th><th>Impacto</th><th>Nível</th><th>Ação</th></tr></thead>
+            <tbody>
+              <tr>
+                <td>Concentração Racional Eng.</td>
+                <td class="mono">R$ 1,22M</td>
+                <td><span class="pill p-ng">CRÍTICO</span></td>
+                <td style="font-size:11px;color:var(--text2)">Diversificar base — min. 3 contratos >R$200k ativos</td>
+              </tr>
+              <tr>
+                <td>NF 31 Acciona vencida</td>
+                <td class="mono">R$ 45.129</td>
+                <td><span class="pill p-ng">URGENTE</span></td>
+                <td style="font-size:11px;color:var(--text2)">Acionar cobrança ativa esta semana</td>
+              </tr>
+              <tr>
+                <td>Cotia 39 com prejuízo</td>
+                <td class="mono">-R$ 12.482</td>
+                <td><span class="pill p-ng">ALTO</span></td>
+                <td style="font-size:11px;color:var(--text2)">Revisar contratos e custos alocados</td>
+              </tr>
+              <tr>
+                <td>NF 211 — 832 dias</td>
+                <td class="mono">R$ 12.500</td>
+                <td><span class="pill p-at">MÉDIO</span></td>
+                <td style="font-size:11px;color:var(--text2)">Avaliar cobrança judicial vs baixa</td>
+              </tr>
+              <tr>
+                <td>Cajamar margem 3,7%</td>
+                <td class="mono">R$ 353k rec.</td>
+                <td><span class="pill p-at">MÉDIO</span></td>
+                <td style="font-size:11px;color:var(--text2)">Auditoria de custos de MO alocada</td>
+              </tr>
+              <tr>
+                <td>Insumos Fev 4× Jan</td>
+                <td class="mono">R$ 1,99M Fev</td>
+                <td><span class="pill p-az">MONIT.</span></td>
+                <td style="font-size:11px;color:var(--text2)">Confirmar se reflete avanço de obras</td>
+              </tr>
             </tbody>
           </table>
         </div>
       </div>
     </div>
-
-    <!-- ===== ABA 7: ANÁLISE DE RISCO ===== -->
-    <div class="panel" id="panel-risco">
-      <div class="kpi-row kpi-row-5">
-        <div class="card card-sm">
-          <div class="kpi-label">Score de Risco Geral</div>
-          <div class="kpi-val mono" style="color:var(--yellow)">MÉDIO</div>
-          <div class="kpi-delta d-warn">3 alertas ativos</div>
-        </div>
-        <div class="card card-sm">
-          <div class="kpi-label">Concentração Receita</div>
-          <div class="kpi-val mono" style="color:var(--red)">51%</div>
-          <div class="kpi-sub">1 cliente = metade</div>
-        </div>
-        <div class="card card-sm">
-          <div class="kpi-label">Capital Travado</div>
-          <div class="kpi-val mono" style="color:var(--yellow)">R$ 655k</div>
-          <div class="kpi-sub">a receber em aberto</div>
-        </div>
-        <div class="card card-sm">
-          <div class="kpi-label">Cobertura de Caixa</div>
-          <div class="kpi-val mono" style="color:var(--green)">2,1x</div>
-          <div class="kpi-sub">meses de operação</div>
-        </div>
-        <div class="card card-sm">
-          <div class="kpi-label">Margem de Segurança</div>
-          <div class="kpi-val mono" style="color:var(--red)">R$ 443k</div>
-          <div class="kpi-sub">vs meta R$ 821k</div>
-        </div>
-      </div>
-
-      <div class="chart-grid chart-2">
-        <!-- Concentração de receita -->
-        <div class="card">
-          <div class="card-title">🎯 Concentração de Receita — Risco <span class="badge bg-red">ALTO</span></div>
-          <canvas id="chartRiscoConc" height="180"></canvas>
-          <div style="margin-top:14px">
-            <div class="risk-block high">
-              <span class="risk-val" style="color:var(--red)">51%</span>
-              <div class="risk-title">Prefeitura de Jundiaí — Cliente dominante</div>
-              <div class="risk-desc">Metade da receita depende de um único pagador público com PMR de 62 dias. Atraso ou suspensão de pagamento paralisa o fluxo de caixa operacional.</div>
-            </div>
-            <div class="risk-block med">
-              <span class="risk-val" style="color:var(--yellow)">68%</span>
-              <div class="risk-title">Top 2 clientes = 68% da receita</div>
-              <div class="risk-desc">Adicionando DER-SP, dois clientes respondem por 68,2% do faturamento. Recomenda-se diversificação para reduzir para máx. 40% por cliente.</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Capital travado -->
-        <div class="card">
-          <div class="card-title">💰 Capital Travado — Risco <span class="badge bg-yellow">MÉDIO</span></div>
-          <canvas id="chartRiscoCapital" height="180"></canvas>
-          <div style="margin-top:14px">
-            <div class="risk-block high">
-              <span class="risk-val" style="color:var(--red)">R$ 337k</span>
-              <div class="risk-title">NFs vencidas sem recebimento</div>
-              <div class="risk-desc">R$ 337k já vencidos, incluindo NF 211 com 135 dias de atraso. Esse capital está imobilizado e corrói a liquidez operacional.</div>
-            </div>
-            <div class="risk-block med">
-              <span class="risk-val" style="color:var(--yellow)">R$ 318k</span>
-              <div class="risk-title">NFs a vencer nos próximos 30 dias</div>
-              <div class="risk-desc">R$ 318k vencem até 25/04. Prioridade: confirmar aprovação das medições antes do vencimento para não adicionar ao estoque de inadimplência.</div>
-            </div>
-            <div class="risk-block low">
-              <span class="risk-val" style="color:var(--green)">R$ 655k</span>
-              <div class="risk-title">Total a receber — 15,6% da receita</div>
-              <div class="risk-desc">Proporcionalmente dentro do aceitável, mas concentrado em poucos clientes de alto valor. O ciclo de aprovação público aumenta o risco.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="chart-grid chart-2">
-        <!-- Cobertura de caixa -->
-        <div class="card">
-          <div class="card-title">🏦 Cobertura de Caixa — Risco <span class="badge bg-green">BAIXO</span></div>
-          <div style="margin:16px 0 8px">
-            <div style="display:flex;justify-content:space-between;margin-bottom:6px">
-              <span style="font-size:12px;color:var(--text2)">Caixa disponível estimado</span>
-              <span class="mono" style="font-size:13px">R$ 820k</span>
-            </div>
-            <div style="display:flex;justify-content:space-between;margin-bottom:6px">
-              <span style="font-size:12px;color:var(--text2)">Custo mensal médio (folha + fixos)</span>
-              <span class="mono" style="font-size:13px">R$ 387k/mês</span>
-            </div>
-            <div style="display:flex;justify-content:space-between;margin-bottom:16px">
-              <span style="font-size:12px;color:var(--text2)">Cobertura sem receita nova</span>
-              <span class="mono" style="font-size:13px;color:var(--green)">2,1 meses</span>
-            </div>
-            <div class="risk-meter">
-              <div class="risk-needle" style="left:30%"></div>
-            </div>
-            <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-top:4px">
-              <span>0m — Crítico</span><span>1m — Alerta</span><span>3m — Seguro</span><span>6m+ — Ótimo</span>
-            </div>
-          </div>
-          <div class="sep"></div>
-          <div class="risk-block low">
-            <div class="risk-title">Cobertura de 2,1 meses — Adequado</div>
-            <div class="risk-desc">O caixa atual cobre 2,1 meses de operação sem entrada de receita. Ação recomendada: manter reserva mínima de 2 meses enquanto a inadimplência estiver acima de R$ 300k.</div>
-          </div>
-        </div>
-
-        <!-- Margem vs meta -->
-        <div class="card">
-          <div class="card-title">📉 Desvio de Margem — Risco <span class="badge bg-red">ALTO</span></div>
-          <canvas id="chartRiscoMargem" height="160"></canvas>
-          <div style="margin-top:14px">
-            <div class="risk-block high">
-              <span class="risk-val" style="color:var(--red)">-9pp</span>
-              <div class="risk-title">Margem real 10,5% vs meta 19,5%</div>
-              <div class="risk-desc">O desvio de 9 pontos percentuais indica que custos indiretos e combustível estão acima do previsto. O resultado absoluto (R$ 443k) cobre os custos mas não gera o retorno esperado.</div>
-            </div>
-            <div class="risk-block med">
-              <span class="risk-val" style="color:var(--yellow)">R$ 378k</span>
-              <div class="risk-title">Gap de resultado vs meta</div>
-              <div class="risk-desc">Para atingir a margem meta de 19,5%, seria necessário R$ 821k de resultado líquido. O gap atual é de R$ 378k — principalmente explicado pelo excesso de combustível e subcontratados.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Tabela resumo de riscos -->
-      <div class="card">
-        <div class="card-title">📋 Matriz de Riscos — Prioridades de Ação</div>
-        <table>
-          <thead><tr><th>Risco</th><th>Categoria</th><th>Impacto Financeiro</th><th>Probabilidade</th><th>Nível</th><th>Ação Recomendada</th></tr></thead>
-          <tbody>
-            <tr>
-              <td>Concentração Pref. Jundiaí</td><td>Receita</td>
-              <td class="mono">R$ 2.149k em risco</td>
-              <td class="mono">Baixa/Moderada</td>
-              <td><span class="pill p-ng">ALTO</span></td>
-              <td>Diversificar base — mínimo 3 contratos >R$500k simultâneos</td>
-            </tr>
-            <tr>
-              <td>Inadimplência acumulada</td><td>Liquidez</td>
-              <td class="mono">R$ 337k travados</td>
-              <td class="mono">Alta</td>
-              <td><span class="pill p-ng">ALTO</span></td>
-              <td>Cobrança ativa semanal — NF 211 e NF 198 prioritárias</td>
-            </tr>
-            <tr>
-              <td>Margem abaixo da meta</td><td>Rentabilidade</td>
-              <td class="mono">Gap R$ 378k</td>
-              <td class="mono">Confirmado</td>
-              <td><span class="pill p-ng">ALTO</span></td>
-              <td>Revisão de contrato de combustível + renegociar subcontratados</td>
-            </tr>
-            <tr>
-              <td>PMR médio 47 dias</td><td>Capital de Giro</td>
-              <td class="mono">R$ 655k imobilizado</td>
-              <td class="mono">Alta</td>
-              <td><span class="pill p-at">MÉDIO</span></td>
-              <td>Negociar antecipação ou boleto com vencimento 30 dias</td>
-            </tr>
-            <tr>
-              <td>Custo combustível alto</td><td>Custo Direto</td>
-              <td class="mono">R$ 412k — 10,9%</td>
-              <td class="mono">Confirmado</td>
-              <td><span class="pill p-at">MÉDIO</span></td>
-              <td>Auditoria de consumo por equipamento + abastecimento centrali...</td>
-            </tr>
-            <tr>
-              <td>Cobertura de caixa 2,1m</td><td>Liquidez</td>
-              <td class="mono">Reserva R$ 820k</td>
-              <td class="mono">Baixa</td>
-              <td><span class="pill p-ok">BAIXO</span></td>
-              <td>Manter reserva e monitorar mensalmente</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
+ 
   </div><!-- /main -->
 </div><!-- /app -->
-
+ 
 <script>
-// ============================================================
-//  AUTH
-// ============================================================
-const PWD_HASH = "fe2592b4a272e977f055943785b709cc82b16b9a87f88c6abf3900d65d0cdc3"; // agrovias4321
-
-async function sha256(msg){
-  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(msg));
-  return [...new Uint8Array(buf)].map(x=>x.toString(16).padStart(2,'0')).join('');
-}
-async function login(){
-  const pwd = document.getElementById('pwd').value;
-  const hash = await sha256(pwd);
-  if(hash === PWD_HASH){
-    document.getElementById('auth').style.display='none';
-    document.getElementById('app').style.display='block';
-    initCharts();
-  } else {
-    document.getElementById('auth-err').style.display='block';
-  }
-}
-
-// ============================================================
-//  DATA
-// ============================================================
-const MESES = ['Jun/25','Jul/25','Ago/25','Set/25','Out/25','Nov/25','Dez/25','Jan/26','Fev/26','Mar/26'];
-
-const DATA = {
-  resultado: [
-    {mes:'Jun/25', rec:310000, cd:185000, mo:78000, ind:52000, imp:28000},
-    {mes:'Jul/25', rec:390000, cd:220000, mo:81000, ind:58000, imp:35000},
-    {mes:'Ago/25', rec:445000, cd:258000, mo:82000, ind:62000, imp:40000},
-    {mes:'Set/25', rec:420000, cd:241000, mo:80000, ind:60000, imp:38000},
-    {mes:'Out/25', rec:510000, cd:295000, mo:86000, ind:68000, imp:46000},
-    {mes:'Nov/25', rec:480000, cd:279000, mo:84000, ind:65000, imp:43000},
-    {mes:'Dez/25', rec:380000, cd:220000, mo:81000, ind:55000, imp:34000},
-    {mes:'Jan/26', rec:420000, cd:243000, mo:85000, ind:63000, imp:38000},
-    {mes:'Fev/26', rec:395000, cd:228000, mo:82000, ind:58000, imp:36000},
-    {mes:'Mar/26', rec:460000, cd:242000, mo:73000, ind:68000, imp:45000},
-  ],
-  custos_cat: {
-    insumos: [80,90,95,88,110,105,82,92,88,98],
-    combustivel: [32,42,45,40,52,48,38,44,40,48],
-    subcontratados: [58,68,72,66,84,80,62,70,66,76],
-    folha: [78,81,82,80,86,84,81,85,82,73],
-    aluguel: [18,18,19,18,20,20,18,19,18,19],
-    outros: [22,28,30,26,35,33,26,29,26,32]
-  }
-};
-
-DATA.resultado.forEach(d => {
-  d.resultado = d.rec - d.cd - d.mo - d.ind - d.imp;
-  d.margem = ((d.resultado / d.rec) * 100).toFixed(1);
-});
-
-const fmt = v => 'R$ '+(v>=1000000?(v/1000000).toFixed(2)+'M':(v>=1000?(v/1000).toFixed(0)+'k':v));
-
-// ============================================================
-//  TABS
-// ============================================================
-function swTab(name, el){
-  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('on'));
-  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));
-  document.getElementById('panel-'+name).classList.add('on');
-  el.classList.add('on');
-}
-
-// ============================================================
-//  EDIT MODE
-// ============================================================
-let editMode = false;
-function toggleEdit(){
-  editMode = !editMode;
-  document.body.classList.toggle('edit-mode', editMode);
-  document.getElementById('edit-btn').classList.toggle('on', editMode);
-  document.getElementById('edit-btn').textContent = editMode ? '✓ Salvar' : '✏️ Editar dados';
-}
-
-// ============================================================
-//  TABLE RESULTADO
-// ============================================================
-function buildTableResultado(){
-  const tbody = document.getElementById('tb-resultado');
-  tbody.innerHTML = '';
-  DATA.resultado.forEach(d => {
-    const cor = d.resultado > 0 ? 'var(--green)' : 'var(--red)';
-    const mCor = parseFloat(d.margem) >= 15 ? 'var(--green)' : parseFloat(d.margem) >= 8 ? 'var(--yellow)' : 'var(--red)';
-    tbody.innerHTML += `<tr>
-      <td>${d.mes}</td>
-      <td class="mono editable">${fmt(d.rec)}</td>
-      <td class="mono">${fmt(d.cd)}</td>
-      <td class="mono">${fmt(d.mo)}</td>
-      <td class="mono">${fmt(d.ind)}</td>
-      <td class="mono">${fmt(d.imp)}</td>
-      <td class="mono" style="color:${cor}">${fmt(d.resultado)}</td>
-      <td class="mono" style="color:${mCor}">${d.margem}%</td>
-    </tr>`;
-  });
-}
-
-// ============================================================
-//  EXPORT CSV
-// ============================================================
+// AUTH
+const PWD_HASH = 'fe2592b42a727e977f055947385b709cc82b16b9a87f88c6abf3900d65d0cdc3'; // 4321
+async function sha256(msg){const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(msg));return[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('')}
+async function login(){const h=await sha256(document.getElementById('pwd').value);if(h===PWD_HASH){document.getElementById('auth').style.display='none';document.getElementById('app').style.display='block';initCharts()}else{document.getElementById('auth-err').style.display='block'}}
+ 
+// TABS
+function sw(name,el){document.querySelectorAll('.panel').forEach(p=>p.classList.remove('on'));document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));document.getElementById('panel-'+name).classList.add('on');el.classList.add('on')}
+ 
+// EXPORT
 function exportCSV(){
-  let csv = 'Mês,Receita,Custo Direto,Mão de Obra,Indiretos,Impostos,Resultado,Margem\n';
-  DATA.resultado.forEach(d=>{
-    csv += `${d.mes},${d.rec},${d.cd},${d.mo},${d.ind},${d.imp},${d.resultado},${d.margem}%\n`;
-  });
-  const a = document.createElement('a');
-  a.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv);
-  a.download = 'agrovias_resultado.csv';
-  a.click();
+  const rows=[['Centro de Custo','Receita Jan','Resultado Jan','Receita Fev','Resultado Fev','Total Rec','Total Res','Margem'],
+    ['Equipe Obras',1229654,693094,482818,107612,1712472,800706,'46.8%'],
+    ['Cajamar',174081,-12418,179749,25442,353830,13024,'3.7%'],
+    ['Castelo 46',49127,-7641,65559,17907,114686,10266,'9.0%'],
+    ['Cotia 39+Itu',28512,-28038,54473,15556,82985,-12482,'-15.0%'],
+    ['TOTAL',1481374,644997,782599,166517,2263973,811514,'35.8%']];
+  const csv=rows.map(r=>r.join(',')).join('\n');
+  const a=document.createElement('a');a.href='data:text/csv;charset=utf-8,'+encodeURIComponent(csv);a.download='agrovias_2026_real.csv';a.click();
 }
-
-// ============================================================
-//  CHART CONFIG
-// ============================================================
-const DARK = {
-  bg: '#0d1117', text: '#8b949e', border: '#30363d', grid: '#1c2128'
-};
-Chart.defaults.color = DARK.text;
-Chart.defaults.borderColor = DARK.border;
-
-const tooltipOpts = {
-  backgroundColor:'#161b22',
-  borderColor:'#30363d',
-  borderWidth:1,
-  titleColor:'#e6edf3',
-  bodyColor:'#8b949e',
-  titleFont:{family:'DM Sans',weight:'600'},
-  bodyFont:{family:'JetBrains Mono',size:12},
-  padding:10,
-  callbacks:{label:ctx=>' '+fmt(ctx.parsed.y!==undefined?ctx.parsed.y:ctx.parsed)}
-};
-
-function axisOpts(yFmt){
-  return {
-    x:{grid:{color:DARK.grid},ticks:{color:DARK.text,font:{size:11}}},
-    y:{grid:{color:DARK.grid},ticks:{color:DARK.text,font:{family:'JetBrains Mono',size:11},callback:v=>yFmt?yFmt(v):v}}
-  };
-}
-
-// ============================================================
-//  INIT CHARTS
-// ============================================================
+ 
+// CHART CONFIG
+const DK={text:'#8b949e',border:'#30363d',grid:'#1c2128'};
+Chart.defaults.color=DK.text;Chart.defaults.borderColor=DK.border;
+const TT={backgroundColor:'#161b22',borderColor:'#30363d',borderWidth:1,titleColor:'#e6edf3',bodyColor:'#8b949e',titleFont:{family:'DM Sans',weight:'600'},bodyFont:{family:'JetBrains Mono',size:12},padding:10};
+const fmt=v=>'R$'+(v>=1000000?(v/1000000).toFixed(2)+'M':v>=1000?(v/1000).toFixed(0)+'k':v.toFixed(0));
+function ax(cb){return{x:{grid:{color:DK.grid},ticks:{color:DK.text,font:{size:11}}},y:{grid:{color:DK.grid},ticks:{color:DK.text,font:{family:'JetBrains Mono',size:11},callback:cb||((v)=>fmt(v))}}}}
+ 
 function initCharts(){
-  buildTableResultado();
-  const recs = DATA.resultado.map(d=>d.rec);
-  const custos = DATA.resultado.map(d=>d.cd+d.mo+d.ind+d.imp);
-  const margens = DATA.resultado.map(d=>parseFloat(d.margem));
-  const meses = DATA.resultado.map(d=>d.mes);
-
-  // --- ABA 1 ---
-  new Chart('chartRecCusto',{type:'bar',data:{labels:meses,datasets:[
-    {label:'Receita',data:recs,backgroundColor:'#1f4d28',borderColor:'#3fb950',borderWidth:1},
-    {label:'Custo Total',data:custos,backgroundColor:'#4d1a1a',borderColor:'#f85149',borderWidth:1}
-  ]},options:{responsive:true,plugins:{legend:{labels:{color:DARK.text,usePointStyle:true,font:{family:'DM Sans',size:12}}},tooltip:tooltipOpts},scales:axisOpts(v=>'R$'+(v/1000).toFixed(0)+'k')}});
-
-  new Chart('chartMargem',{type:'line',data:{labels:meses,datasets:[
-    {label:'Margem %',data:margens,borderColor:'#58a6ff',backgroundColor:'#1a3a5c33',fill:true,tension:.4,pointRadius:4,pointBackgroundColor:'#58a6ff'},
-    {label:'Meta 19,5%',data:meses.map(()=>19.5),borderColor:'#3fb95066',borderDash:[4,4],pointRadius:0}
-  ]},options:{responsive:true,plugins:{legend:{labels:{color:DARK.text,usePointStyle:true,font:{family:'DM Sans',size:12}}},tooltip:tooltipOpts},scales:{x:{grid:{color:DARK.grid},ticks:{color:DARK.text,font:{size:11}}},y:{grid:{color:DARK.grid},ticks:{color:DARK.text,font:{family:'JetBrains Mono',size:11},callback:v=>v+'%'}}}}});
-
-  new Chart('chartComposicao',{type:'doughnut',data:{labels:['Custos Diretos','Mão de Obra','Indiretos','Impostos'],datasets:[{data:[2210571,911299,648899,443531],backgroundColor:['#1f6feb','#2ea043','#9e6a03','#da3633'],borderWidth:0,borderRadius:2}]},options:{responsive:true,cutout:'65%',plugins:{legend:{position:'bottom',labels:{color:DARK.text,font:{family:'DM Sans',size:12},padding:12,usePointStyle:true,pointStyle:'circle'}},tooltip:{backgroundColor:'#161b22',borderColor:'#30363d',borderWidth:1,bodyFont:{family:'JetBrains Mono',size:12},callbacks:{label:ctx=>' '+fmt(ctx.parsed)}}}}});
-
-  const acum = [];let soma=0;
-  DATA.resultado.forEach(d=>{soma+=d.resultado;acum.push(soma)});
-  new Chart('chartAcumulado',{type:'line',data:{labels:meses,datasets:[{label:'Resultado Acum.',data:acum,borderColor:'#3fb950',backgroundColor:'#1a4d1e55',fill:true,tension:.4,pointRadius:3}]},options:{responsive:true,plugins:{legend:{labels:{color:DARK.text,usePointStyle:true,font:{family:'DM Sans',size:12}}},tooltip:tooltipOpts},scales:axisOpts(v=>'R$'+(v/1000).toFixed(0)+'k')}});
-
-  // --- ABA 2: Centro de Custo ---
-  new Chart('chartCC',{type:'doughnut',data:{labels:['Dante Principal','Castelo','Cajamar'],datasets:[{data:[2740000,762000,704000],backgroundColor:['#1f6feb','#2ea043','#9e6a03'],borderWidth:0}]},options:{responsive:true,cutout:'60%',plugins:{legend:{position:'bottom',labels:{color:DARK.text,font:{family:'DM Sans',size:12},padding:12,usePointStyle:true,pointStyle:'circle'}},tooltip:{backgroundColor:'#161b22',borderColor:'#30363d',borderWidth:1,bodyFont:{family:'JetBrains Mono',size:12},callbacks:{label:ctx=>' '+fmt(ctx.parsed)}}}}});
-
-  new Chart('chartCCMensal',{type:'bar',data:{labels:meses,datasets:[
-    {label:'Dante',data:[201,254,290,273,332,312,247,273,257,299],backgroundColor:'#1f6feb'},
-    {label:'Castelo',data:[58,71,81,76,92,87,69,76,71,83],backgroundColor:'#2ea043'},
-    {label:'Cajamar',data:[51,65,74,71,86,81,64,71,67,78],backgroundColor:'#9e6a03'},
-  ]},options:{responsive:true,plugins:{legend:{labels:{color:DARK.text,usePointStyle:true,font:{family:'DM Sans',size:12}}},tooltip:{...tooltipOpts,callbacks:{label:ctx=>' R$'+ctx.parsed.y+'k'}}},scales:{x:{grid:{color:DARK.grid},ticks:{color:DARK.text,font:{size:11}},stacked:true},y:{grid:{color:DARK.grid},ticks:{color:DARK.text,font:{family:'JetBrains Mono',size:11},callback:v=>'R$'+v+'k'},stacked:true}}}});
-
-  // --- ABA 3: Clientes ---
-  new Chart('chartClientes',{type:'bar',data:{labels:['Pref. Jundiaí','DER-SP','CCR Via Oeste','Const. Noval','Outros'],datasets:[{data:[2149,723,512,380,446],backgroundColor:['#1f6feb','#388bfd','#58a6ff','#79c0ff','#b6d4fe'],borderRadius:4,borderSkipped:false}]},options:{responsive:true,indexAxis:'y',plugins:{legend:{display:false},tooltip:{backgroundColor:'#161b22',borderColor:'#30363d',borderWidth:1,bodyFont:{family:'JetBrains Mono',size:12},callbacks:{label:ctx=>' R$'+ctx.parsed.x+'k'}}},scales:{x:{grid:{color:DARK.grid},ticks:{color:DARK.text,font:{family:'JetBrains Mono',size:11},callback:v=>'R$'+v+'k'}},y:{grid:{color:DARK.grid},ticks:{color:DARK.text,font:{size:12}}}}}});
-
-  new Chart('chartConcentracao',{type:'doughnut',data:{labels:['Pref. Jundiaí (51%)','DER-SP (17,2%)','CCR (12,2%)','Outros (19,6%)'],datasets:[{data:[51,17.2,12.2,19.6],backgroundColor:['#da3633','#e08e45','#d29922','#1f6feb'],borderWidth:0}]},options:{responsive:true,cutout:'60%',plugins:{legend:{position:'bottom',labels:{color:DARK.text,font:{family:'DM Sans',size:12},padding:10,usePointStyle:true,pointStyle:'circle'}}}}});
-
-  // --- ABA 5: Pessoal ---
-  new Chart('chartFuncao',{type:'doughnut',data:{labels:['Operador (12)','Aux. Oper. (8)','Técnico (6)','Supervisor (4)','Coord./Eng. (3)','Adm. (3)','Gerência (2)'],datasets:[{data:[12,8,6,4,3,3,2],backgroundColor:['#1f6feb','#2ea043','#9e6a03','#da3633','#bc8cff','#58a6ff','#ff8c42'],borderWidth:0}]},options:{responsive:true,cutout:'60%',plugins:{legend:{position:'right',labels:{color:DARK.text,font:{family:'DM Sans',size:11},padding:8,usePointStyle:true,pointStyle:'circle'}}}}});
-
-  new Chart('chartPessoal',{type:'bar',data:{labels:['Salários','FGTS+INSS','Provisões','VR/VT/Insalub.'],datasets:[{data:[531,214,109,57],backgroundColor:['#2ea043','#388bfd','#9e6a03','#bc8cff'],borderRadius:4,borderSkipped:false}]},options:{responsive:true,plugins:{legend:{display:false},tooltip:{backgroundColor:'#161b22',borderColor:'#30363d',borderWidth:1,bodyFont:{family:'JetBrains Mono',size:12},callbacks:{label:ctx=>' R$'+ctx.parsed.y+'k'}}},scales:axisOpts(v=>'R$'+v+'k')}});
-
-  // --- ABA 6: Custos por Categoria ---
-  new Chart('chartCustoCat',{type:'doughnut',data:{labels:['Insumos/Materiais','Subcontratados','Combustível','Equip./Ferramentas','Salários','FGTS+INSS+Prov.','Aluguel/Loc.','Transporte','Adm./Overhead','Impostos'],datasets:[{data:[839,632,412,328,531,380,198,152,178,444],backgroundColor:['#1f6feb','#388bfd','#58a6ff','#79c0ff','#2ea043','#196c2e','#9e6a03','#bb8009','#d29922','#da3633'],borderWidth:0,borderRadius:2}]},options:{responsive:true,cutout:'55%',plugins:{legend:{position:'right',labels:{color:DARK.text,font:{family:'DM Sans',size:11},padding:8,usePointStyle:true,pointStyle:'circle'}},tooltip:{backgroundColor:'#161b22',borderColor:'#30363d',borderWidth:1,bodyFont:{family:'JetBrains Mono',size:12},callbacks:{label:ctx=>' '+fmt(ctx.parsed)}}}}});
-
-  const dc = DATA.custos_cat;
-  new Chart('chartCustoMensal',{type:'line',data:{labels:meses,datasets:[
-    {label:'Insumos',data:dc.insumos,borderColor:'#58a6ff',fill:false,tension:.4,pointRadius:3},
-    {label:'Combustível',data:dc.combustivel,borderColor:'#f85149',fill:false,tension:.4,pointRadius:3},
-    {label:'Folha',data:dc.folha,borderColor:'#3fb950',fill:false,tension:.4,pointRadius:3},
-    {label:'Subcontrat.',data:dc.subcontratados,borderColor:'#d29922',fill:false,tension:.4,pointRadius:3},
-  ]},options:{responsive:true,plugins:{legend:{labels:{color:DARK.text,usePointStyle:true,font:{family:'DM Sans',size:12}}},tooltip:{...tooltipOpts,callbacks:{label:ctx=>' R$'+ctx.parsed.y+'k'}}},scales:{x:{grid:{color:DARK.grid},ticks:{color:DARK.text,font:{size:11}}},y:{grid:{color:DARK.grid},ticks:{color:DARK.text,font:{family:'JetBrains Mono',size:11},callback:v=>'R$'+v+'k'}}}}});
-
-  // --- ABA 7: Análise de Risco ---
-  new Chart('chartRiscoConc',{type:'doughnut',data:{labels:['Pref. Jundiaí','DER-SP','Outros 6 clientes'],datasets:[{data:[51,17.2,31.8],backgroundColor:['#da3633','#e08e45','#1f6feb'],borderWidth:0}]},options:{responsive:true,cutout:'65%',plugins:{legend:{position:'bottom',labels:{color:DARK.text,font:{family:'DM Sans',size:12},padding:10,usePointStyle:true,pointStyle:'circle'}}}}});
-
-  new Chart('chartRiscoCapital',{type:'bar',data:{labels:['NFs Vencidas','Vence 30d','Vence 31-60d','Vence 60d+'],datasets:[{data:[337,318,182,89],backgroundColor:['#da3633','#e08e45','#9e6a03','#2ea043'],borderRadius:4,borderSkipped:false}]},options:{responsive:true,plugins:{legend:{display:false},tooltip:{backgroundColor:'#161b22',borderColor:'#30363d',borderWidth:1,bodyFont:{family:'JetBrains Mono',size:12},callbacks:{label:ctx=>' R$'+ctx.parsed.y+'k'}}},scales:axisOpts(v=>'R$'+v+'k')}});
-
-  new Chart('chartRiscoMargem',{type:'bar',data:{labels:['Jan/26','Fev/26','Mar/26','Meta'],datasets:[
-    {label:'Margem Real',data:[6.9,8.1,9.3,null],backgroundColor:'#1f6feb',borderRadius:4,borderSkipped:false},
-    {label:'Meta',data:[null,null,null,19.5],backgroundColor:'#1a4d1e',borderRadius:4,borderSkipped:false},
-  ]},options:{responsive:true,plugins:{legend:{labels:{color:DARK.text,usePointStyle:true,font:{family:'DM Sans',size:12}}},tooltip:{...tooltipOpts,callbacks:{label:ctx=>' '+ctx.parsed.y+'%'}}},scales:{x:{grid:{color:DARK.grid},ticks:{color:DARK.text,font:{size:11}}},y:{grid:{color:DARK.grid},ticks:{color:DARK.text,font:{family:'JetBrains Mono',size:11},callback:v=>v+'%'},max:25}}}});
+  // ABA 1 — Receita vs Resultado por CC
+  new Chart('c-recres',{type:'bar',data:{labels:['Equipe Obras','Cajamar','Castelo 46','Cotia 39'],datasets:[
+    {label:'Receita',data:[1712472,353830,114686,82985],backgroundColor:'#1f4d28',borderColor:'#3fb950',borderWidth:1},
+    {label:'Resultado',data:[800706,13024,10266,-12482],backgroundColor:'#1a3a5c',borderColor:'#58a6ff',borderWidth:1}
+  ]},options:{responsive:true,plugins:{legend:{labels:{color:DK.text,usePointStyle:true,font:{family:'DM Sans',size:12}}},tooltip:{...TT,callbacks:{label:c=>' '+fmt(c.parsed.y)}}},scales:ax()}});
+ 
+  // Faturamento mensal
+  new Chart('c-fat',{type:'bar',data:{labels:['Janeiro','Fevereiro','Março'],datasets:[{data:[1508174,782598,577293],backgroundColor:['#2ea043','#388bfd','#9e6a03'],borderRadius:6,borderSkipped:false}]},options:{responsive:true,plugins:{legend:{display:false},tooltip:{...TT,callbacks:{label:c=>' '+fmt(c.parsed.y)}}},scales:ax()}});
+ 
+  // ABA 2 — CC pie
+  new Chart('c-cc-pie',{type:'doughnut',data:{labels:['Equipe Obras 75,6%','Cajamar 15,6%','Castelo 46 5,1%','Cotia 39 3,7%'],datasets:[{data:[1712472,353830,114686,82985],backgroundColor:['#2ea043','#1f6feb','#9e6a03','#da3633'],borderWidth:0}]},options:{responsive:true,cutout:'60%',plugins:{legend:{position:'bottom',labels:{color:DK.text,font:{family:'DM Sans',size:12},padding:10,usePointStyle:true,pointStyle:'circle'}},tooltip:{...TT,callbacks:{label:c=>' '+fmt(c.parsed)}}}}});
+ 
+  // CC bar Jan vs Fev
+  new Chart('c-cc-bar',{type:'bar',data:{labels:['Equipe Obras','Cajamar','Castelo 46','Cotia 39'],datasets:[
+    {label:'Jan',data:[693094,-12418,-7641,-28038],backgroundColor:'#1f6feb'},
+    {label:'Fev',data:[107612,25442,17907,15556],backgroundColor:'#2ea043'},
+  ]},options:{responsive:true,plugins:{legend:{labels:{color:DK.text,usePointStyle:true,font:{family:'DM Sans',size:12}}},tooltip:{...TT,callbacks:{label:c=>' '+fmt(c.parsed.y)}}},scales:{x:{grid:{color:DK.grid},ticks:{color:DK.text,font:{size:11}}},y:{grid:{color:DK.grid},ticks:{color:DK.text,font:{family:'JetBrains Mono',size:11},callback:v=>fmt(v)}}}}});
+ 
+  // ABA 3 — Clientes
+  new Chart('c-cli',{type:'bar',data:{labels:['Racional Eng.','Prologis Brazil','Mercado Livre','Monin Brasil','Microsoft','Assoc. Anhang.','Acciona'],datasets:[{data:[1220817,548124,96066,89819,71045,46541,44522],backgroundColor:['#da3633','#e08e45','#1f6feb','#2ea043','#9e6a03','#388bfd','#bc8cff'],borderRadius:4,borderSkipped:false}]},options:{responsive:true,indexAxis:'y',plugins:{legend:{display:false},tooltip:{...TT,callbacks:{label:c=>' '+fmt(c.parsed.x)}}},scales:{x:{grid:{color:DK.grid},ticks:{color:DK.text,font:{family:'JetBrains Mono',size:11},callback:v=>fmt(v)}},y:{grid:{color:DK.grid},ticks:{color:DK.text,font:{size:12}}}}}});
+ 
+  new Chart('c-conc',{type:'doughnut',data:{labels:['Racional (57,7%)','Prologis (25,9%)','Outros 5 (16,4%)'],datasets:[{data:[57.7,25.9,16.4],backgroundColor:['#da3633','#e08e45','#1f6feb'],borderWidth:0}]},options:{responsive:true,cutout:'60%',plugins:{legend:{position:'bottom',labels:{color:DK.text,font:{family:'DM Sans',size:12},padding:10,usePointStyle:true,pointStyle:'circle'}}}}});
+ 
+  // ABA 4 — NFs
+  new Chart('c-nf',{type:'bar',data:{labels:['Acciona\n(NF31)','FDR Ind.\n(NF211)','Prologis\nJundiaí','FWI Empr.','Res.Monte\nSerrat','3PL Brasil','MTSNI'],datasets:[{data:[45129,12500,10850,8800,10200,1050,1400],backgroundColor:['#da3633','#f85149','#e08e45','#d29922','#bb8009','#9e6a03','#7a4f00'],borderRadius:4,borderSkipped:false}]},options:{responsive:true,plugins:{legend:{display:false},tooltip:{...TT,callbacks:{label:c=>' '+fmt(c.parsed.y)}}},scales:ax()}});
+ 
+  new Chart('c-aging',{type:'doughnut',data:{labels:['+365 dias','181–365 dias','31–180 dias','1–30 dias'],datasets:[{data:[22700,1400,54929,10850],backgroundColor:['#da3633','#e08e45','#d29922','#2ea043'],borderWidth:0}]},options:{responsive:true,cutout:'60%',plugins:{legend:{position:'bottom',labels:{color:DK.text,font:{family:'DM Sans',size:12},padding:10,usePointStyle:true,pointStyle:'circle'}},tooltip:{...TT,callbacks:{label:c=>' '+fmt(c.parsed)}}}}});
+ 
+  // ABA 5 — Custos categorias
+  new Chart('c-cat-pie',{type:'doughnut',data:{labels:['Insumos/Materiais','Folha+Encargos','Equipamentos','Indireto/Banco','Combustível','Transporte','Aluguel'],datasets:[{data:[2482358,725915,72035,73791,38317,25466,16137],backgroundColor:['#1f6feb','#2ea043','#d29922','#9e6a03','#da3633','#bc8cff','#388bfd'],borderWidth:0}]},options:{responsive:true,cutout:'55%',plugins:{legend:{position:'right',labels:{color:DK.text,font:{family:'DM Sans',size:11},padding:8,usePointStyle:true,pointStyle:'circle'}},tooltip:{...TT,callbacks:{label:c=>' '+fmt(c.parsed)}}}}});
+ 
+  new Chart('c-cat-bar',{type:'bar',data:{labels:['Insumos','Folha','Equip.','Indireto','Comb.','Transp.','Aluguel'],datasets:[
+    {label:'Janeiro',data:[487017,370531,36170,38926,20201,3663,5763],backgroundColor:'#1f6feb'},
+    {label:'Fevereiro',data:[1995341,355384,36865,35865,18116,22803,10374],backgroundColor:'#2ea043'},
+  ]},options:{responsive:true,plugins:{legend:{labels:{color:DK.text,usePointStyle:true,font:{family:'DM Sans',size:12}}},tooltip:{...TT,callbacks:{label:c=>' '+fmt(c.parsed.y)}}},scales:{x:{grid:{color:DK.grid},ticks:{color:DK.text,font:{size:10}}},y:{grid:{color:DK.grid},ticks:{color:DK.text,font:{family:'JetBrains Mono',size:11},callback:v=>fmt(v)}}}}});
+ 
+  // ABA 6 — Risco concentração
+  new Chart('c-risco-conc',{type:'doughnut',data:{labels:['Racional Eng. (57,7%)','Prologis (25,9%)','Demais 5 clientes (16,4%)'],datasets:[{data:[57.7,25.9,16.4],backgroundColor:['#da3633','#e08e45','#1f6feb'],borderWidth:0}]},options:{responsive:true,cutout:'65%',plugins:{legend:{position:'bottom',labels:{color:DK.text,font:{family:'DM Sans',size:12},padding:10,usePointStyle:true,pointStyle:'circle'}}}}});
+ 
+  // Risco CC margem
+  new Chart('c-risco-cc',{type:'bar',data:{labels:['Equipe Obras','Cajamar','Castelo 46','Cotia 39'],datasets:[
+    {label:'Margem %',data:[46.8,3.7,9.0,-15.0],backgroundColor:['#2ea043','#d29922','#d29922','#da3633'],borderRadius:4,borderSkipped:false},
+    {label:'Meta 20%',data:[20,20,20,20],type:'line',borderColor:'#58a6ff66',borderDash:[4,4],pointRadius:0,borderWidth:1},
+  ]},options:{responsive:true,plugins:{legend:{labels:{color:DK.text,usePointStyle:true,font:{family:'DM Sans',size:12}}},tooltip:{...TT,callbacks:{label:c=>' '+c.parsed.y+'%'}}},scales:{x:{grid:{color:DK.grid},ticks:{color:DK.text,font:{size:11}}},y:{grid:{color:DK.grid},ticks:{color:DK.text,font:{family:'JetBrains Mono',size:11},callback:v=>v+'%'}}}}});
+ 
+  // Risco NF aging
+  new Chart('c-risco-nf',{type:'bar',data:{labels:['+365d','181-365d','31-180d','1-30d'],datasets:[{data:[22700,1400,54929,10850],backgroundColor:['#da3633','#e08e45','#d29922','#3fb950'],borderRadius:4,borderSkipped:false}]},options:{responsive:true,plugins:{legend:{display:false},tooltip:{...TT,callbacks:{label:c=>' '+fmt(c.parsed.y)}}},scales:ax()}});
 }
 </script>
 </body>
